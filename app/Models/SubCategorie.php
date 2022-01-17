@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\SubCategorie;
+use App\Models\Categorie;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class SubCategorie extends Model
 {
     use HasFactory;
 
@@ -14,9 +14,8 @@ class Categorie extends Model
         'name',
     ];
 
-    public function subCategories()
+    public function categorie()
     {
-        return $this->hasMany(SubCategorie::class);
+        return $this->belongsTO(Categorie::class);
     }
-
 }

@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\Categorie;
+use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProviderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,7 +23,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resources([
-    'categories' => Categorie::class
+    'categories' => CategorieController::class,
+    'products' => ProductController::class,
+    'providers' => ProviderController::class,
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
