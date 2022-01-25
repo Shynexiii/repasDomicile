@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\CategorieController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ProviderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +19,5 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resources([
-    'categories' => CategorieController::class,
-    'products' => ProductController::class,
-    'providers' => ProviderController::class,
-]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

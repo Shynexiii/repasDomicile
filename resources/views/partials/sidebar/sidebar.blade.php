@@ -14,21 +14,21 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="{{ route('categories.index') }}" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Catégories</p>
+                        <p>Clients</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('products.index') }}" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Produits</p>
+                        <p>Plats</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('providers.index') }}" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Fournisseurs</p>
+                        <p>Commande</p>
                     </a>
                 </li>
             </ul>
