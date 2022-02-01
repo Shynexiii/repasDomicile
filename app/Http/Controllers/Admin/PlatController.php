@@ -57,7 +57,7 @@ class PlatController extends Controller
      */
     public function show(Plat $plat)
     {
-        //
+        return view('pages.plats.show', compact('plat'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PlatController extends Controller
      */
     public function edit(Plat $plat)
     {
-        //
+        return view('pages.plats.edit', compact('plat'));
     }
 
     /**
@@ -80,7 +80,20 @@ class PlatController extends Controller
      */
     public function update(Request $request, Plat $plat)
     {
-        //
+        $editPalt = Plat::find($plat->id);
+        $this->validate($request, [
+            'nom' => 'required',
+            'description' => 'required',
+            'prix' => 'required',
+        ]);
+
+        $editPalt->nom = $request['nom'];
+        $editPalt->description = $request['description'];
+        $editPalt->prix = $request['prix'];
+        $editPalt->image = $request['image'];
+        $editPalt->save();
+
+        return redirect()->route('plats.index');
     }
 
     /**

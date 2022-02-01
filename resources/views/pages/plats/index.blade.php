@@ -27,10 +27,8 @@
                             <td>{{ $plat->prix }} €</td>
                             <td>
                                 <div class="d-flex">
-                                    <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal"
-                                        data-bs-target="#apercuPlatModal">Apeçu</button>
-                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modifierPlatModal">modifier</button>
+                                    {{-- <a href="{{ route('plats.show', $plat->id) }}" class="btn btn-info btn-sm me-2">Apeçu</a> --}}
+                                    <a href="{{ route('plats.edit', $plat->id) }}" class="btn btn-warning btn-sm">modifier</a>
                                     <form action="{{ route('plats.destroy', $plat->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
