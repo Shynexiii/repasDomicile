@@ -16,7 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('partials.navbar.navbar')
 
     @include('partials.sidebar.sidebar')
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -35,10 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    @yield('content')
-                </div>
-                <!-- /.row -->
+                @yield('content')
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
@@ -51,5 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 <script src="{{asset('js/app.js')}}"></script>
+
+@yield('script')
 </body>
 </html>
