@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
+/*Route::get('/', function () {
+return view('auth.login');
+});*/
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->group(function () {
+    Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resources([
-    'plats' => App\Http\Controllers\Admin\PlatController::class,
-]);
+    Route::resources([
+        'users' => App\Http\Controllers\Admin\UserController::class,
+        'plats' => App\Http\Controllers\Admin\PlatController::class,
+    ]);
+});
+
+Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('front.home');
