@@ -27,7 +27,7 @@
     <!-- Page content-->
     <div class="container">
         <div class="text-center mt-5">
-            <h1>Bienvenu sur Repas à domicile</h1>
+            <h1>Bienvenue sur Repas à domicile</h1>
         </div>
         <hr>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
