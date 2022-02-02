@@ -31,6 +31,5 @@ Suivre les instructions:
 6) Rendez-vous a l'adresse du serveur local. eg : 127.0.0.1:8000
 
 7) Accedez a la partie administration du site via. eg : 127.0.0.1:8000/admin/login
-
-	username : demo
-	password : password
+     - username : demo
+     - password : password
