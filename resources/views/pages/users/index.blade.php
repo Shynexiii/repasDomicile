@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('users.create') }}" class="btn btn-primary float-end">Ajouter un plat</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary float-end">Ajouter un client</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
@@ -25,15 +25,13 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
-                            <td></td>
+                            <td>{{ $user->phone }}</td>
                             <td></td>
                             <td>
                                 <div class="d-flex">
-                                    <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal"
-                                        data-bs-target="#apercuPlatModal">Apeçu</button>
-                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modifierPlatModal">modifier</button>
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm me-2">Apeçu</a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">modifier</a>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div class="col-sm">

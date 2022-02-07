@@ -80,18 +80,18 @@ class PlatController extends Controller
      */
     public function update(Request $request, Plat $plat)
     {
-        $editPalt = Plat::find($plat->id);
+        $editPlat = Plat::find($plat->id);
         $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'prix' => 'required',
         ]);
 
-        $editPalt->nom = $request['nom'];
-        $editPalt->description = $request['description'];
-        $editPalt->prix = $request['prix'];
-        $editPalt->image = $request['image'];
-        $editPalt->save();
+        $editPlat->nom = $request['nom'];
+        $editPlat->description = $request['description'];
+        $editPlat->prix = $request['prix'];
+        $editPlat->image = $request['image'];
+        $editPlat->save();
 
         return redirect()->route('plats.index');
     }

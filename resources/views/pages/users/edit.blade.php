@@ -3,26 +3,36 @@
 @section('pageTitle', 'Ajouter un nouveau client')
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('plats.store') }}">
+            <form method="POST" action="{{ route('users.update', $user->id) }}">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="nom">Nom et prénom</label>
-                    <input type="text" name="nom" class="form-control" />
+                    <input type="text" name="name" value="{{ $user->name }}" class="form-control"  />
                 </div>
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur</label>
-                    <input type="text" name="username" class="form-control" />
+                    <input type="text" name="username" value="{{ $user->username }}" class="form-control"  />
                 </div>
                 <div class="form-group">
                     <label for="email">Adresse e-mail</label>
-                    <input type="text" name="email" class="form-control" />
+                    <input type="text" name="email" value="{{ $user->email }}" class="form-control"  />
                 </div>
                 <div class="form-group">
-                    <label for="telephone">Téléphone</label>
-                    <input type="text" name="telephone" class="form-control" />
+                    <label for="phone">Téléphone</label>
+                    <input type="text" name="phone" value="{{ $user->phone }}" class="form-control"  />
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>

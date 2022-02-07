@@ -17,7 +17,7 @@ class PlatFactory extends Factory
             'nom' => $this->faker->word,
             'description' => $this->faker->sentence(),
             'prix' => $this->faker->randomFloat(2, 0, 100),
-            'image' => $this->faker->imageUrl(200, 200),
+            'image' => 'https://dummyimage.com/450x300',
         ];
     }
 }

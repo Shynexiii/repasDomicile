@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -27,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.users.create');
     }
 
     /**
@@ -38,7 +40,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'phone' => ['nullable', 'digits:10'],
+        ]);
+
+        $user = User::create([
+            'name' => $request['name'],
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'password' => Hash::make($request['password']),
+        ]);
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -49,7 +67,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('pages.users.show', compact('user'));
     }
 
     /**
@@ -60,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('pages.users.edit', compact('user'));
     }
 
     /**
@@ -72,7 +90,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $editUser = User::find($user->id);
+        $this->validate($request, [
+            'name' => ['string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'string', 'min:4', 'confirmed'],
+            'phone' => ['nullable', 'digits:10'],
+        ]);
+
+        $editUser->name = $request['name'];
+        $editUser->username = $request['username'];
+        $editUser->email = $request['email'];
+        $editUser->phone = $request['phone'];
+        $editUser->password = Hash::make($request['password']);
+        $editUser->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -83,6 +117,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('plats.index');
     }
 }
