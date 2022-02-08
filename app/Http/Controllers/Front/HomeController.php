@@ -84,4 +84,9 @@ class HomeController extends Controller
     {
         //
     }
+
+    public function plat_info(Plat $id)
+    {
+        return response()->json(['plat' => $id]);
+    }
 }
