@@ -16,8 +16,8 @@ class PlatController extends Controller
     public function index()
     {
         $plats = Plat::all();
-
-        return view('pages.plats.index', compact('plats'));
+        dd(auth()->user());
+        return view('admin.plats.index', compact('plats'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PlatController extends Controller
      */
     public function create()
     {
-        return view('pages.plats.create');
+        return view('admin.plats.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class PlatController extends Controller
      */
     public function show(Plat $plat)
     {
-        return view('pages.plats.show', compact('plat'));
+        return view('admin.plats.show', compact('plat'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PlatController extends Controller
      */
     public function edit(Plat $plat)
     {
-        return view('pages.plats.edit', compact('plat'));
+        return view('admin.plats.edit', compact('plat'));
     }
 
     /**

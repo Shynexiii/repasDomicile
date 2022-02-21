@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Plat;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class CommandeContoller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $plats = Plat::all();
-        return view('front.index', compact('plats'));
+        //
     }
 
     /**
@@ -84,10 +81,5 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function plat_info(Plat $id)
-    {
-        return response()->json(['plat' => $id]);
     }
 }

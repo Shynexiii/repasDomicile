@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Commande;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plat extends Model
 {
     use HasFactory;
-
+    // protected $table = 'plats';
     protected $fillable = [
         'nom',
         'description',
         'prix',
         'image',
     ];
+
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class);
+    }
 }

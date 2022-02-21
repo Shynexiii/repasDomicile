@@ -1,7 +1,6 @@
-@extends('layouts.front-layout')
+@extends('layouts.front')
 
 @section('content')
-
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
         @foreach ($plats as $plat)
             <div class="col mb-5">
@@ -34,7 +33,11 @@
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
                             {{-- <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a> --}}
-                            <button type="button" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                            <form action="{{ route('cart.add', $plat->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
