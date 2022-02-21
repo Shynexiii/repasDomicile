@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Stripe\Stripe;
-use Stripe\StripeClient;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
 use App\Models\Commande;
-use App\Models\Plat;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Session as ss;
 
 class PaiementContoller extends Controller
 {
@@ -47,20 +43,9 @@ class PaiementContoller extends Controller
 
     public function success()
     {
-
         $client = session('client');
         if ($client != null) {
-            // $stripe = new \Stripe\StripeClient(
-            //     'sk_test_51FQL8yEkhypZ4UaGoUsRDzxYPoAk2oCbGOqoAdRtcV9rYGx4oxBqdxm8uecwxb1MIUFWgaQxIFmC6OnfJFQsAtOW00YDE7bcYb'
-            // );
-            // $session = $stripe->checkout->sessions->retrieve(
-            //     $client,
-            // );
-            // $paymentIntent = $stripe->paymentIntents->retrieve(
-            //     $session->payment_intent,
-            // );
             $cart = Cart::content();
-            // dd(Cart::content());
             foreach ($cart as $value) {
                 $id[] = $value->id;
                 $quantite[] = $value->qty;
@@ -72,16 +57,10 @@ class PaiementContoller extends Controller
             $commande->mode_paiement = "Card";
             $commande->user()->associate(auth()->user());
             $commande->save();
-            $commande->plat = new Plat;
             foreach (Cart::content() as $value) {
                 $commande->plats()->attach($value->id, ['quantite' => $value->qty]);
-                $commande->plats();
             }
-            $commande->plats()->save();
-            dd($commande->plats());
         }
-
-        dd();
         Cart::destroy();
         return view('front.successPage');
     }
