@@ -3,80 +3,141 @@
 @section('title', 'Panier')
 
 @section('content')
-    <section class="h-100">
-        <div class="container h-100 py-5">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-10">
-                    @foreach ($carts as $cart)
-                        {{-- {{ dd($carts->description) }} --}}
-                        <div class="card rounded-3 mb-4">
-                            <div class="card-body p-4">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <img src="{{ $cart->options->image }}" class="img-fluid rounded-3"
-                                            alt="Cotton T-shirt">
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2">{{ $cart->name }}</p>
-                                        <p><span class="text-muted">Description:
-                                            </span>{{ $cart->options->description }} </p>
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                        <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
+<section class="h-100">
+    <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-10">
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prix unitaire</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Prix total</th>
+                                <th scope="col">Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($carts as $cart)
+                            <tr>
+                                <td class="col-md-2 text-center "> <img src="{{ $cart->options->image }}"
+                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                </td>
+                                <td>
+                                    <p class=" align-middle">
+                                    <h5>{{ $cart->name }}</h5>
+                                    <p>{{ $cart->options->description }} </p>
+                                    </p>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <h5 class="mb-0">{{ $cart->price }} € </h5>
+                                </td>
+                                <td class="col-md-2 align-middle"><select id="qty" class="custom-select"
+                                        data-id="{{ $cart->rowId }}">
+                                        @for ($i = 1; $i < 6; $i++) <option value="{{ $i }}" {{ ($i==$cart->qty) ?
+                                            'selected' : '' }}>{{ $i }}</option>
+                                            @endfor
+                                    </select></td>
+                                <td class="text-center align-middle">
+                                    <h5 class="mb-0">{{ $cart->price * $cart->qty }} €</h5>
+                                </td>
+                                {{-- <td>{{ $cart->price * $cart->qty }}</td> --}}
+                                <td class="col-md-1 col-lg-1 col-xl-1 text-center align-middle">
+                                    <form action="{{ route('cart.destroy', $cart->rowId) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn text-danger"><i
+                                                class="fas fa-trash fa-lg"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
 
-                                        <input id="form1" min="1" max="5" name="quantity" value="{{ $cart->qty }}"
-                                            type="number" class="form-control form-control-sm" />
-
-                                        <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h5 class="mb-0">{{ $cart->price }} €</h5>
-                                    </div>
-                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <form action="{{ route('cart.destroy', $cart->rowId) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn text-danger"><i
-                                                    class="fas fa-trash fa-lg"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                    </table>
+                </div>
+                {{-- <div class="card mb-5 col-md-5 float-end">
+                    <div class="card-body p-4">
+                        <div class="float-end">
+                            <p class="mb-0 me-5 d-flex align-items-center">
+                                <span class="text-muted me-2">Prix Total:</span> <span class="lead fw-normal">{{
+                                    Cart::priceTotal() }}</span>
+                            </p>
                         </div>
-                    @endforeach
-                    <div class="card mb-5 col-md-5 float-end">
-                        <div class="card-body p-4">
-                            <div class="float-end">
-                                <p class="mb-0 me-5 d-flex align-items-center">
-                                    <span class="text-muted me-2">Prix Total:</span> <span
-                                        class="lead fw-normal">{{ Cart::priceTotal() }}</span>
-                                </p>
-                            </div>
 
-                        </div>
                     </div>
-
-                    <div class="card col-md-12">
-                        <form action="{{ route('checkout') }}" method="GET" class="card-body">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg">Proceed to Pay</button>
-                        </form>
-                    </div>
+                </div> --}}
+                <div class="table-responsive mt-1">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-md-2 text-center "></td>
+                                <td class=" align-middle"></td>
+                                <td class="text-center align-middle"></td>
+                                <td class="col-md-2 align-middle"></td>
+                                <td class="col-md-1 col-lg-1 col-xl-1 text-center align-middle"></td>
+                                <td class="text-end align-middle">
+                                    <h4 class="">Total à payer : {{ Cart::priceTotal() }}</h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card col-md-12">
+                    <form action="{{ route('checkout') }}" method="GET" class="card-body">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Payer</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
+            let qty = document.querySelectorAll('#qty');
+            Array.from(qty).forEach((element) => {
+                element.addEventListener('change', function() {
+                    let rowId = this.getAttribute('data-id');
+                    let token = $('meta[name="csrf-token"]').attr('content');
+                    let data = {
+                        'qty': $(this).val()
+                    };
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: "patch",
+                        url: "/cart/"+rowId,
+                        data: data,
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response);
+                            location.reload();
+                        }
+                    });
+                });
+
+            });
 
         });
-    </script>
+
+</script>
 @endsection

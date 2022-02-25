@@ -9,7 +9,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect()->route('login_page');
     });
-    Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name(('login_page'));
+    Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login_page');
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resources([
@@ -22,6 +22,7 @@ Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->na
 
 Route::get('cart', [App\Http\Controllers\Front\CartContoller::class, 'index'])->name('cart.index');
 Route::put('cart/{plat}', [App\Http\Controllers\Front\CartContoller::class, 'store'])->name('cart.add');
+Route::patch('cart/{rowId}', [App\Http\Controllers\Front\CartContoller::class, 'update'])->name('cart.update');
 Route::delete('cart/{rowId}', [App\Http\Controllers\Front\CartContoller::class, 'destroy'])->name('cart.destroy');
 Route::delete('cart', [App\Http\Controllers\Front\CartContoller::class, 'destroyAll'])->name('cart.destroyAll');
 

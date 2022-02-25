@@ -21,7 +21,7 @@ class PaiementContoller extends Controller
                     'product_data' => [
                         'name' => $value->name,
                     ],
-                    'unit_amount' => Str::remove('.', $value->price),
+                    'unit_amount' => $value->price * 100,
                 ],
                 'quantity' => $value->qty,
             ];

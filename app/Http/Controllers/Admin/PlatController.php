@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Plat;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PlatController extends Controller
 {
@@ -16,7 +18,7 @@ class PlatController extends Controller
     public function index()
     {
         $plats = Plat::all();
-        dd(auth()->user());
+        // dd(Auth::user()->name);
         return view('admin.plats.index', compact('plats'));
     }
 
@@ -46,7 +48,7 @@ class PlatController extends Controller
 
         $plat = Plat::create($request->all());
 
-        return redirect()->route('plats.index');
+        return Redirect::route('plats.index');
     }
 
     /**
@@ -93,7 +95,7 @@ class PlatController extends Controller
         $editPlat->image = $request['image'];
         $editPlat->save();
 
-        return redirect()->route('plats.index');
+        return Redirect::route('plats.index');
     }
 
     /**
@@ -105,6 +107,6 @@ class PlatController extends Controller
     public function destroy(Plat $plat)
     {
         $plat->delete();
-        return redirect()->route('plats.index');
+        return Redirect::route('plats.index');
     }
 }
