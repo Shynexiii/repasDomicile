@@ -50,6 +50,26 @@
                     Panier <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::count() }}</span>
                 </a>
             </div>
+            @guest
+            @if (Route::has('login'))
+            <li class="ml-2">
+                <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+            @endif
+            @else
+            <div class="dropdown ml-2">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
+                    {{ auth()->user()->name }}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                    <li><a class="dropdown-item" href="#">Mes preférences</a></li>
+                    <li><a class="dropdown-item" href="#">Mes Commandes</a></li>
+                </ul>
+            </div>
+            @endguest
+
         </div>
     </nav>
     <!-- Header-->
