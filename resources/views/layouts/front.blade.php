@@ -28,48 +28,35 @@
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    {{-- <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{{route('front.index')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                        </ul>
-                    </li> --}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
+
                 </ul>
                 <a href="{{ route('cart.index') }}" class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     Panier <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::count() }}</span>
                 </a>
-            </div>
-            @guest
-            @if (Route::has('login'))
-            <li class="ml-2">
-                <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @endif
-            @else
-            <div class="dropdown ml-2">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
-                    {{ auth()->user()->name }}
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profil</a></li>
-                    <li><a class="dropdown-item" href="#">Mes preférences</a></li>
-                    <li><a class="dropdown-item" href="#">Mes Commandes</a></li>
+                @guest
+                @if (Route::has('login'))
+                <ul class="navbar-nav">
+                    <li class="ml-2">
+                        <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
                 </ul>
+                @else
+                <div class="dropdown ml-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i>
+                        {{ auth()->user()->name }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><a class="dropdown-item" href="#">Mes preférences</a></li>
+                        <li><a class="dropdown-item" href="#">Mes Commandes</a></li>
+                    </ul>
+                </div>
+                @endif
+                @endguest
             </div>
-            @endguest
-
         </div>
     </nav>
     <!-- Header-->
