@@ -24,20 +24,25 @@
                         <div class="bi-star-fill"></div>
                         <div class="bi-star-fill"></div>
                     </div>
-                    <!-- Product price-->
-                    {{-- <span class="text-muted text-decoration-line-through">$20.00</span> --}}
-
                     <p class="lead m-0">{{ $plat->prix }} €</p>
                 </div>
             </div>
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center">
-                    {{-- <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a> --}}
                     <form action="{{ route('cart.add', $plat->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-outline-dark mt-auto">Ajouter au panier</button>
+                        <button type="submit" class="btn btn-outline-dark d-block mx-auto">Ajouter au panier</button>
+                    </form>
+                    <form action="{{ route('preference.store', $plat->id) }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-outline-danger mt-2 d-block mx-auto"
+                            @foreach(auth()->user()->plats as $item) @if($plat->id == $item->id) disabled @endif
+                            @endforeach
+                            id="wishlist_btn"
+                            value="{{ $plat->id }}">Ajouter à mes préférences</button>
                     </form>
                 </div>
             </div>

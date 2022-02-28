@@ -21,4 +21,9 @@ class Plat extends Model
     {
         return $this->belongsToMany(Commande::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }

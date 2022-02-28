@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Adresse::class);
     }
+
+    public function plats()
+    {
+        return $this->belongsToMany(Plat::class)->withTimestamps();
+    }
 }

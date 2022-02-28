@@ -50,8 +50,8 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profil</a></li>
-                        <li><a class="dropdown-item" href="#">Mes preférences</a></li>
-                        <li><a class="dropdown-item" href="#">Mes Commandes</a></li>
+                        <li><a class="dropdown-item" href="{{ route('preference.index') }}">Mes preférences</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.commande_history') }}">Mes Commandes</a></li>
                     </ul>
                 </div>
                 @endguest

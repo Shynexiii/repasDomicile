@@ -15,44 +15,9 @@ class CartContoller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Plat $plat)
     {
-        // $a = [
-        //     'price_data' => [
-        //         'currency' => 'eur',
-        //         'product_data' => [
-        //             'name' => $value->name,
-        //         ],
-        //         'unit_amount' => $value->price,
-        //     ],
-        //     'quantity' => $value->qty,
-        // ];
         $carts = Cart::content();
-        // foreach ($carts as $value) {
-        //     $plat['line_items'][] = [
-        //         'price_data' => [
-        //             'currency' => 'eur',
-        //             'product_data' => [
-        //                 'name' => $value->name,
-        //             ],
-        //             'unit_amount' => $value->price,
-        //         ],
-        //         'quantity' => $value->qty,
-        //     ];
-        // }
-        // dd($plat);
-        // $plat["rowId"]: "58ae4c41e3205e7276dbedcf886a2705",
-        // $plat["id"]: 1,
-        // $plat["name"]: "Pates",
-        // $plat["qty"]: 1,
-        // $plat["price"]: 73.25,
-        // $plat["weight"]: 0,
-        // $plat["description"]: "Poireau,Carotte,Chilie,Ail",
-        // $plat["image"]: "https://dummyimage.com/450x300"
-        // print_r($plat);
-        // $a = $plat->toJson();
-        // $b = json_decode($a, true);
-        // dd($a);
         return view('front.cart', compact('carts'));
     }
 

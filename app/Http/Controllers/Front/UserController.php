@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\User;
 use App\Models\Adresse;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
+        // $u = User::find($user->id)->adresse()->get();
+        // dd($u, $user->adresse()->ville);
         return view('front.profile', compact('user'));
     }
 
@@ -110,7 +113,7 @@ class UserController extends Controller
             'ville' => 'sometimes|string|max:50',
             'code_postal' => 'sometimes|digits:5',
         ]);
-        $user->adresse->adresse = $request->adresse;
+        $user->adresse->nom = $request->adresse;
         $user->adresse->ville = $request->ville;
         $user->adresse->code_postal = $request->code_postal;
         $user->adresse->save();

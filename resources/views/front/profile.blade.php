@@ -115,10 +115,9 @@
                         <legend>Adresse</legend>
                         <div class="form-group">
                             <label for="inputAdresse">Adresse</label>
-                            <input type="text" class="form-control @error('adresse') is-invalid @enderror"
-                                id="inputAdresse" name="adresse" placeholder="1234 avenue François"
-                                value="{{ $user->adresse->adresse }}">
-                            @error('adresse')
+                            <input type="text" class="form-control @error('nom') is-invalid @enderror" id="inputAdresse"
+                                name="nom" placeholder="1234 avenue François" value="{{ $user->adresse->nom ?? '' }}">
+                            @error('nom')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -128,7 +127,8 @@
                             <div class="form-group col-md-8">
                                 <label for="inputCity">Ville</label>
                                 <input type="text" class="form-control @error('ville') is-invalid @enderror"
-                                    id="inputCity" name="ville" value="{{ $user->adresse->ville }}">
+                                    id="inputCity" name="ville" value="{{ $user->adresse->ville ?? '' }}"
+                                    placeholder="Paris">
                                 @error('ville')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -138,7 +138,8 @@
                             <div class="form-group col-md-4">
                                 <label for="inputCode_postal">Code postal</label>
                                 <input type="text" class="form-control @error('code_postal') is-invalid @enderror"
-                                    id="inputCode_postal" name="code_postal" value="{{ $user->adresse->code_postal }}">
+                                    id="inputCode_postal" name="code_postal"
+                                    value="{{ $user->adresse->code_postal ?? '' }}" placeholder="75001">
                                 @error('code_postal')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

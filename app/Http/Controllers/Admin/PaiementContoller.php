@@ -33,9 +33,9 @@ class PaiementContoller extends Controller
             $plat,
             'mode' => 'payment',
             'customer_email' => auth()->user()->email,
-            'shipping_address_collection' => [
-                'allowed_countries' => 'FR',
-            ],
+            // 'shipping_address_collection' => [
+            //     'allowed_countries' => 'FR'
+            // ],
             'locale' => 'fr',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('cart.index'),

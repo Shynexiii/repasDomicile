@@ -10,7 +10,7 @@ class Adresse extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'adresse', 'ville', 'code_postal'
+        'nom', 'ville', 'code_postal'
     ];
 
     public function user()
