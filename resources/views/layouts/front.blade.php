@@ -29,11 +29,10 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
-
                 </ul>
-                <a href="{{ route('cart.index') }}" class="btn btn-outline-dark">
+                <a href="{{ route('cart.index') }}" class="btn btn-outline-secondary">
                     <i class="bi-cart-fill me-1"></i>
-                    Panier <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::count() }}</span>
+                    Panier <span class="badge bg-secondary text-white ms-1 rounded-pill">{{ Cart::count() }}</span>
                 </a>
                 @guest
                 @if (Route::has('login'))
@@ -42,6 +41,7 @@
                         <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                 </ul>
+                @endif
                 @else
                 <div class="dropdown ml-2">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -49,12 +49,11 @@
                         {{ auth()->user()->name }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profil</a></li>
                         <li><a class="dropdown-item" href="#">Mes preférences</a></li>
                         <li><a class="dropdown-item" href="#">Mes Commandes</a></li>
                     </ul>
                 </div>
-                @endif
                 @endguest
             </div>
         </div>

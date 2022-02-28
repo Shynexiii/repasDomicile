@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Adresse;
 use App\Models\Commande;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function commandes()
     {
         return $this->hasMany(Commande::class);
+    }
+
+    public function adresse()
+    {
+        return $this->hasOne(Adresse::class);
     }
 }

@@ -60,25 +60,14 @@
 
                         </table>
                     </div>
-                    <div class="table-responsive mt-1">
+                    <div class="table-responsive mt-3">
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="col-md-2 text-center "></td>
-                                    <td class=" align-middle"></td>
-                                    <td class="text-center align-middle"></td>
-                                    <td class="col-md-2 align-middle"></td>
-                                    <td class="col-md-1 col-lg-1 col-xl-1 text-center align-middle"></td>
                                     <td class="text-end align-middle">
                                         <h4 class="">Total à payer : {{ Cart::priceTotal() }}</h4>
                                     </td>

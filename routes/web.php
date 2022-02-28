@@ -29,4 +29,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('cart', [App\Http\Controllers\Front\CartContoller::class, 'destroyAll'])->name('cart.destroyAll');
     Route::get('checkout', [App\Http\Controllers\Admin\PaiementContoller::class, 'checkout'])->name('checkout');
     Route::get('checkout/success', [App\Http\Controllers\Admin\PaiementContoller::class, 'success'])->name('checkout.success');
+
+    Route::get('profile', [App\Http\Controllers\Front\UserController::class, 'index'])->name('user.profile');
+    Route::post('profile/{user}', [App\Http\Controllers\Front\UserController::class, 'update'])->name('user.update');
+    Route::post('profile/updatePassword/{user}', [App\Http\Controllers\Front\UserController::class, 'updatePassword'])->name('user.updatePassword');
+    Route::post('profile/update_adresse/{user}', [App\Http\Controllers\Front\UserController::class, 'update_adresse'])->name('user.update_adresse');
 });

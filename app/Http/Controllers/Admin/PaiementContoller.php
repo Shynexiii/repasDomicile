@@ -32,9 +32,15 @@ class PaiementContoller extends Controller
         $session = Session::create([
             $plat,
             'mode' => 'payment',
+            'customer_email' => auth()->user()->email,
+            'shipping_address_collection' => [
+                'allowed_countries' => 'FR',
+            ],
+            'locale' => 'fr',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('cart.index'),
         ]);
+        // dd($session);
         session()->put('client', $session->id);
         // $client_secret = $intent->client_secret;
         return redirect($session->url);

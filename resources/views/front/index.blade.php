@@ -26,7 +26,8 @@
                     </div>
                     <!-- Product price-->
                     {{-- <span class="text-muted text-decoration-line-through">$20.00</span> --}}
-                    {{ $plat->prix }}
+
+                    <p class="lead m-0">{{ $plat->prix }} €</p>
                 </div>
             </div>
             <!-- Product actions-->
@@ -36,7 +37,7 @@
                     <form action="{{ route('cart.add', $plat->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                        <button type="submit" class="btn btn-outline-dark mt-auto">Ajouter au panier</button>
                     </form>
                 </div>
             </div>
