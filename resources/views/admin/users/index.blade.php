@@ -11,8 +11,8 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Nom & prénom</th>
-                    <th scope="col">Nom d'utilisateur</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
                     <th scope="col">Email</th>
                     <th scope="col">Téléphone</th>
                     <th scope="col">Role</th>
@@ -22,11 +22,11 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->username }}</td>
+                    <td>{{ $user->last_name }}</td>
+                    <td>{{ $user->first_name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
-                    <td></td>
+                    <td>{{ $user->role }}</td>
                     <td>
                         <div class="d-flex">
                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm me-2">Apeçu</a>
