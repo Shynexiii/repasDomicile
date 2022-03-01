@@ -19,7 +19,7 @@ class UserHasRole
         if ($request->user()->role === $role) {
             return $next($request);
         } else {
-            abort(403, "Vous devez vous connecter pour acceder à cette page");
+            abort(404);
         }
     }
 }
