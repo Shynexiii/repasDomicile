@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Commande;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class CommandeContoller extends Controller
@@ -48,7 +49,7 @@ class CommandeContoller extends Controller
      */
     public function show($id)
     {
-        $commandes = Commande::find($id)->plats;
+        $commandes = Commande::find($id);
         // dd($commandes->plats[0]->getOriginal()['pivot_quantite']);
         return view('admin.commandes.detail', compact('commandes'));
     }
@@ -73,7 +74,14 @@ class CommandeContoller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $commande = Commande::find($id);
+        $this->validate($request, [
+            'status' => Rule::in(['En cours', 'Livrée']),
+        ]);
+
+        $commande->status = $request->status;
+        $commande->save();
+        return back()->with('success', 'Le status de la commande à bien  été mise à jour');
     }
 
     /**

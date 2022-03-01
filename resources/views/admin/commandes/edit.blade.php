@@ -12,25 +12,27 @@
     </ul>
 </div>
 @endif
+
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('plats.store') }}">
+        <form method="POST" action="{{ route('users.update', $user->id) }}">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="last_name">Nom</label>
-                <input type="text" name="last_name" class="form-control" />
+                <input type="text" name="last_name" value="{{ $user->last_name }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="first_name">Prénom</label>
-                <input type="text" name="first_name" class="form-control" />
+                <input type="text" name="first_name" value="{{ $user->first_name }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="email">Adresse e-mail</label>
-                <input type="text" name="email" class="form-control" />
+                <input type="text" name="email" value="{{ $user->email }}" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="telephone">Téléphone</label>
-                <input type="text" name="telephone" class="form-control" />
+                <label for="phone">Téléphone</label>
+                <input type="text" name="phone" value="{{ $user->phone }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
@@ -40,12 +42,8 @@
                 <label for="password_confirmation">Confirmer le mot de passe</label>
                 <input type="password" name="password_confirmation" class="form-control" />
             </div>
-            {{-- <div class="form-group">
-                <label for="role">Role</label>
-                <input type="text" name="role" class="form-control" />
-            </div> --}}
             <button type="submit" class="btn btn-primary">
-                Ajouter
+                Enregistrer
             </button>
         </form>
     </div>

@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.users.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -41,16 +41,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
             'phone' => ['nullable', 'digits:10'],
         ]);
 
-        $user = User::create([
-            'name' => $request['name'],
-            'username' => $request['username'],
+        User::create([
+            'last_name' => $request['last_name'],
+            'first_name' => $request['first_name'],
             'email' => $request['email'],
             'phone' => $request['phone'],
             'password' => Hash::make($request['password']),
@@ -92,15 +92,15 @@ class UserController extends Controller
     {
         $editUser = User::find($user->id);
         $this->validate($request, [
-            'name' => ['string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:4', 'confirmed'],
             'phone' => ['nullable', 'digits:10'],
         ]);
 
-        $editUser->name = $request['name'];
-        $editUser->username = $request['username'];
+        $editUser->last_name = $request['last_name'];
+        $editUser->first_name = $request['first_name'];
         $editUser->email = $request['email'];
         $editUser->phone = $request['phone'];
         $editUser->password = Hash::make($request['password']);

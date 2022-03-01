@@ -31,11 +31,8 @@
                         <td class="align-middle">{{ $commande->adresse }}</td>
                         <td class="align-middle">{{ $commande->mode_paiement }}</td>
                         <td>
-                            <form action="{{ route('commandes.show', $commande->id) }}" method="GET">
-                                @csrf
-                                <button type="submit" class="btn text-secondary btn-lg"><i
-                                        class="bi bi-eye-fill"></i></button>
-                            </form>
+                            <a href="{{ route('commandes.show', $commande->id) }}" class="btn text-secondary btn-lg"><i
+                                    class="bi bi-eye-fill"></i></a>
                         </td>
                     </tr>
                     @endforeach
