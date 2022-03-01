@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adresse;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -66,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        $adresse = new Adresse;
         $user = new User;
         $user->last_name = $data['last_name'];
         $user->first_name = $data['first_name'];
@@ -74,11 +75,17 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->role = 'client';
         $user->save();
+        $user->adresse()->save($adresse);
         return $user;
     }
 
     public function showRegistrationForm()
     {
         return view('auth.register2');
+    }
+
+    protected function redirectTo()
+    {
+        return '/profile';
     }
 }

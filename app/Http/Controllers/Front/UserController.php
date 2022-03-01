@@ -113,6 +113,7 @@ class UserController extends Controller
             'ville' => 'sometimes|string|max:50',
             'code_postal' => 'sometimes|digits:5',
         ]);
+        // dd($user->adresse);
         $user->adresse->nom = $request->nom;
         $user->adresse->ville = $request->ville;
         $user->adresse->code_postal = $request->code_postal;
