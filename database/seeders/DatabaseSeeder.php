@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Factory::create();
         DB::table('users')->insert([
-            'name' => $faker->name(),
-            'username' => 'demo',
+            'last_name' => $faker->lastName,
+            'first_name' => $faker->firstName,
             'email' => $faker->email,
             'role' => 'admin',
             'phone' => '07' . $faker->randomNumber(8, true),

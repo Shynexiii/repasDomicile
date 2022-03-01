@@ -38,11 +38,14 @@
                     <form action="{{ route('preference.store', $plat->id) }}" method="POST">
                         @csrf
                         @method('POST')
+                        @auth
                         <button type="submit" class="btn btn-outline-danger mt-2 d-block mx-auto"
                             @foreach(auth()->user()->plats as $item) @if($plat->id == $item->id) disabled @endif
                             @endforeach
                             id="wishlist_btn"
                             value="{{ $plat->id }}">Ajouter à mes préférences</button>
+                        @endauth
+
                     </form>
                 </div>
             </div>

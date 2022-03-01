@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Plat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class HomeController extends Controller
@@ -17,6 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $plats = Plat::all();
+        // dd(Auth::user()->adresse == null);
         return view('front.index', compact('plats'));
     }
 

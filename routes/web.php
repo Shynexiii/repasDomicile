@@ -15,6 +15,7 @@ Route::prefix('admin')->group(function () {
         Route::resources([
             'users' => App\Http\Controllers\Admin\UserController::class,
             'plats' => App\Http\Controllers\Admin\PlatController::class,
+            'commandes' => App\Http\Controllers\Admin\CommandeContoller::class,
         ]);
     });
 });

@@ -24,10 +24,10 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputNom">Nom</label>
-                                <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                                    id="inputNom" name="name" value="{{ $user->name ?? old('name') }}"
+                                <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
+                                    id="inputNom" name="last_name" value="{{ $user->last_name ?? old('last_name') }}"
                                     placeholder="Nom">
-                                @error('name')
+                                @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -35,10 +35,10 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPrenom">Prénom</label>
-                                <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                    id="inputPrenom" name="username" value="{{ $user->username ?? old('username') }}"
-                                    placeholder="Prenom">
-                                @error('username')
+                                <input type="text" class="form-control @error('first_name') is-invalid @enderror"
+                                    id="inputPrenom" name="first_name"
+                                    value="{{ $user->first_name ?? old('first_name') }}" placeholder="Prenom">
+                                @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

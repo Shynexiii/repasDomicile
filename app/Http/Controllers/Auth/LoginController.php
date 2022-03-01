@@ -23,12 +23,12 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // /**
+    //  * Where to redirect users after login.
+    //  *
+    //  * @var string
+    //  */
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -40,14 +40,36 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function username(): string
-    {
-        return 'username';
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();
         return redirect('login');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login2');
+    }
+
+    public function redirectTo()
+    {
+        $role = Auth::user()->role;
+        switch ($role) {
+            case 'admin':
+                return '/admin/home';
+                break;
+            case 'client':
+                if (Auth::user()->adresse == null) {
+                    return '/profile';
+                    break;
+                } else {
+                    return '/';
+                    break;
+                }
+
+            default:
+                return '/';
+                break;
+        }
     }
 }
