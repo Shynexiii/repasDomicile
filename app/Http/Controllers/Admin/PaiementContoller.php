@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Stripe\Stripe;
+use Stripe\Customer;
+use App\Models\Commande;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
-use App\Models\Commande;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PaiementContoller extends Controller
@@ -31,18 +32,16 @@ class PaiementContoller extends Controller
         );
         $session = Session::create([
             $plat,
-            'mode' => 'payment',
             'customer_email' => auth()->user()->email,
+            'mode' => 'payment',
             // 'shipping_address_collection' => [
-            //     'allowed_countries' => 'FR'
+            //     'allowed_countries' => ['FR'],
             // ],
             'locale' => 'fr',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('cart.index'),
         ]);
-        // dd($session);
         session()->put('client', $session->id);
-        // $client_secret = $intent->client_secret;
         return redirect($session->url);
     }
 
@@ -58,7 +57,7 @@ class PaiementContoller extends Controller
             $commande = new Commande;
             $commande->montant = Cart::total();
             $commande->status = 'En cours';
-            $commande->adresse = "Evry";
+            $commande->adresse = auth()->user()->adresse->nom . ', ' . auth()->user()->adresse->ville . ', ' . auth()->user()->adresse->code_postal;
             $commande->mode_paiement = "Card";
             $commande->user()->associate(auth()->user());
             $commande->save();

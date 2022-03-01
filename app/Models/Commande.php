@@ -19,6 +19,6 @@ class Commande extends Model
 
     public function plats()
     {
-        return $this->belongsToMany(Plat::class)->withTimestamps();
+        return $this->belongsToMany(Plat::class)->withTimestamps()->withPivot('quantite');
     }
 }
