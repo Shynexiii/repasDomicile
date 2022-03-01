@@ -109,11 +109,11 @@ class UserController extends Controller
     public function update_adresse(Request $request, User $user)
     {
         $request->validate([
-            'adresse' => 'sometimes|string|max:255',
+            'nom' => 'sometimes|string|max:255',
             'ville' => 'sometimes|string|max:50',
             'code_postal' => 'sometimes|digits:5',
         ]);
-        $user->adresse->nom = $request->adresse;
+        $user->adresse->nom = $request->nom;
         $user->adresse->ville = $request->ville;
         $user->adresse->code_postal = $request->code_postal;
         $user->adresse->save();

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Adresse;
 use Faker\Factory;
 use App\Models\Plat;
 use App\Models\User;
@@ -25,14 +26,21 @@ class DatabaseSeeder extends Seeder
             'username' => 'demo',
             'email' => $faker->email,
             'role' => 'admin',
+            'phone' => '07' . $faker->randomNumber(8, true),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        $userX = User::find(1);
+        $adresse = Adresse::factory()->make();
+        $userX->adresse()->save($adresse);
 
-        User::factory(4)->create();
+        User::factory(4)->create()->each(function ($user) {
+            $adresse = Adresse::factory()->make();
+            $user->adresse()->save($adresse);
+        });
         Plat::factory(10)->create();
     }
 }

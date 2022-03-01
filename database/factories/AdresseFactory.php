@@ -1,0 +1,22 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class AdresseFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'nom' => $this->faker->streetAddress,
+            'ville' => $this->faker->city,
+            'code_postal' => $this->faker->postcode,
+        ];
+    }
+}
