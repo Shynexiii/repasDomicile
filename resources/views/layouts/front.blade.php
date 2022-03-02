@@ -11,10 +11,10 @@
     @yield('head_script')
 
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="/css/app.css">
     @yield('stripe_css')
 </head>
 
@@ -98,7 +98,7 @@
         @yield('content')
     </div>
     <!-- Bootstrap core JS-->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
     @yield('script')
     <!-- Core theme JS-->
 </body>
