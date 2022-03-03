@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('cart/{rowId}', [App\Http\Controllers\Front\CartContoller::class, 'update'])->name('cart.update');
     Route::delete('cart/{rowId}', [App\Http\Controllers\Front\CartContoller::class, 'destroy'])->name('cart.destroy');
     Route::delete('cart', [App\Http\Controllers\Front\CartContoller::class, 'destroyAll'])->name('cart.destroyAll');
-    Route::get('checkout', [App\Http\Controllers\Admin\PaiementContoller::class, 'checkout'])->name('checkout');
+    Route::post('checkout', [App\Http\Controllers\Admin\PaiementContoller::class, 'checkout'])->name('checkout');
     Route::get('checkout/success', [App\Http\Controllers\Admin\PaiementContoller::class, 'success'])->name('checkout.success');
 
     Route::get('profile', [App\Http\Controllers\Front\UserController::class, 'index'])->name('user.profile');

@@ -16,7 +16,7 @@ class AdresseFactory extends Factory
         return [
             'nom' => $this->faker->streetAddress,
             'ville' => $this->faker->city,
-            'code_postal' => $this->faker->postcode,
+            'code_postal' => $this->faker->randomNumber(5, true),
         ];
     }
 }

@@ -33,11 +33,12 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
         DB::table('users')->insert([
             'last_name' => $faker->lastName,
             'first_name' => $faker->firstName,
             'email' => 'client@client.com',
-            'role' => 'admin',
+            'role' => 'client',
             'phone' => '07' . $faker->randomNumber(8, true),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -45,9 +46,12 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-        $userX = User::find(1);
-        $adresse = Adresse::factory()->make();
-        $userX->adresse()->save($adresse);
+        $usersX = User::find([1, 2]);
+        foreach ($usersX as $user) {
+            $adresse = Adresse::factory()->make();
+            $user->adresse()->save($adresse);
+        }
+
 
         User::factory(5)->create()->each(function ($user) {
             $adresse = Adresse::factory()->make();

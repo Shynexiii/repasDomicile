@@ -5,14 +5,21 @@ namespace App\Http\Controllers\Admin;
 use Stripe\Stripe;
 use Stripe\Customer;
 use App\Models\Commande;
+use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PaiementContoller extends Controller
 {
-    public function checkout()
+    public function checkout(Request $request)
     {
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'ville' => 'required|string|max:50',
+            'code_postal' => 'required|digits:5',
+        ]);
+
         $carts = Cart::content();
         foreach ($carts as $value) {
             $plat['line_items'][] = [
@@ -34,13 +41,11 @@ class PaiementContoller extends Controller
             $plat,
             'customer_email' => auth()->user()->email,
             'mode' => 'payment',
-            // 'shipping_address_collection' => [
-            //     'allowed_countries' => ['FR'],
-            // ],
             'locale' => 'fr',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('cart.index'),
         ]);
+
         session()->put('client', $session->id);
         return redirect($session->url);
     }

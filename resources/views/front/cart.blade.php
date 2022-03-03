@@ -6,7 +6,7 @@
 <section class="h-100">
     <div class="container h-100 py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
+            <div class="col-">
                 @if (Cart::count() <= 0) <h3 class="text-center">Votre panier est vide</h3>
                     @else
                     <div class="table-responsive">
@@ -38,7 +38,9 @@
                                     </td>
                                     <td class="col-md-2 align-middle"><select id="qty" class="custom-select"
                                             data-id="{{ $cart->rowId }}">
-                                            @for ($i = 1; $i < 6; $i++) <option value="{{ $i }}" {{ ($i==$cart->qty) ?
+                                            @for ($i = 1; $i < 6; $i++) <option value="{{ $i }}" {{ ($i==$cart->
+                                                qty)
+                                                ?
                                                 'selected' : '' }}>{{ $i }}</option>
                                                 @endfor
                                         </select></td>
@@ -75,13 +77,56 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card col-md-12">
-                        <form action="{{ route('checkout') }}" method="GET" class="card-body">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg">Payer</button>
-                        </form>
-                    </div>
-                    @endif
+                    <form action="{{ route('checkout') }}" method="POST" class="card-body">
+                        @csrf
+                        @method('POST')
+                        <div class="mb-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="inputAddress2" class="form-label">Address</label>
+                                    <input type="text" class="form-control @error('nom') is-invalid @enderror"
+                                        name="nom" value="{{ auth()->user()->adresse->nom }}"
+                                        placeholder="9-11 Pl. du Colonel Fabien">
+                                    @error('nom')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputCity" class="form-label">Ville</label>
+                                    <input type="text" class="form-control @error('ville') is-invalid @enderror"
+                                        name="ville" value="{{ auth()->user()->adresse->ville }}" placeholder="Paris">
+                                    @error('ville')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="inputZip" class="form-label">Zip</label>
+                                    <input type="text" class="form-control @error('code_postal') is-invalid @enderror"
+                                        name="code_postal" value="{{ auth()->user()->adresse->code_postal }}"
+                                        placeholder="75010">
+                                    @error('code_postal')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-12">
+                            {{-- <form action="{{ route('checkout') }}" method="POST" class="card-body">
+                                @csrf
+                                @method('POST') --}}
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Payer</button>
+                            </form>
+                        </div>
+                        @endif
             </div>
+
         </div>
     </div>
 </section>
