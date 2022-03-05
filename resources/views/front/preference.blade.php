@@ -22,7 +22,7 @@
                             @foreach ($plats as $plat)
                             <tr>
                                 <td class="col-md-2 text-center "> <img src="{{ $plat->image }}"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        class="img-fluid rounded-3" alt="{{ $plat->nom }}">
                                 </td>
                                 <td class="text-center align-middle">{{ $plat->nom }}</td>
                                 <td class="text-center align-middle">{{ $plat->prix }}</td>

@@ -10,13 +10,16 @@
                 <div class="table-responsive">
                     <table class="table table-striped ">
                         <thead>
-                            {{-- <caption>Total : </caption> --}}
                             <tr class="text-center">
                                 <th scope="col">Image</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prix unitaire</th>
                                 <th scope="col">Quantité</th>
                                 <th scope="col">Prix total</th>
+                                @if ($commandes->status == "Livrée")
+                                <th scope="col">Laisser un commentaire</th>
+                                @endif
+
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +33,11 @@
                                 <td class="align-middle">{{ $plat->getOriginal()['pivot_quantite'] }}</td>
                                 <td class="align-middle">{{ $plat->prix * $plat->getOriginal()['pivot_quantite'] }}
                                 </td>
+                                @if ($commandes->status == "Livrée")
+                                <td class="align-middle"><a href="{{ route('avis.show', $plat->id) }}"><i
+                                            class="bi bi-pencil-square text-primary"></i></a>
+                                </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

@@ -22,6 +22,7 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('front.index');
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [App\Http\Controllers\Front\CartContoller::class, 'index'])->name('cart.index');
     Route::put('cart/{plat}', [App\Http\Controllers\Front\CartContoller::class, 'store'])->name('cart.add');
@@ -42,4 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('preferences', [App\Http\Controllers\Front\PreferenceController::class, 'index'])->name('preference.index');
     Route::post('preferences/{plat}', [App\Http\Controllers\Front\PreferenceController::class, 'store'])->name('preference.store');
     Route::delete('preferences/{plat}', [App\Http\Controllers\Front\PreferenceController::class, 'destroy'])->name('preference.delete');
+
+    Route::get('avis', [App\Http\Controllers\Admin\AvisController::class, 'index'])->name('avis.index');
+    Route::get('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'show'])->name('avis.show');
+    Route::post('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'store'])->name('avis.store');
 });

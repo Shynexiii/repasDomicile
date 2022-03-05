@@ -17,6 +17,11 @@ class Plat extends Model
         'image',
     ];
 
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
+    }
+
     public function commandes()
     {
         return $this->belongsToMany(Commande::class);

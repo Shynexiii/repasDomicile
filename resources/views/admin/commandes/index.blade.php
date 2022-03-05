@@ -4,9 +4,6 @@
 
 @section('content')
 <div class="card">
-    {{-- <div class="card-header">
-        <a href="{{ route('users.create') }}" class="btn btn-primary float-end">Ajouter un client</a>
-    </div> --}}
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped ">
@@ -27,7 +24,9 @@
                         <td class="align-middle">{{ $commande->id }}</td>
                         <td class="align-middle">{{ $commande->user->first_name }} {{ $commande->user->last_name }}</td>
                         <td class="align-middle">{{ $commande->montant }}</td>
-                        <td class="align-middle">{{ $commande->status }}</td>
+                        <td class="align-middle"><span
+                                class="align-middle badge bg-{{ $commande->status == 'En cours' ? 'warning' : 'success' }} fs-6">{{
+                                $commande->status }}</span></td>
                         <td class="align-middle">{{ $commande->adresse }}</td>
                         <td class="align-middle">{{ $commande->mode_paiement }}</td>
                         <td>

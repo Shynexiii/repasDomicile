@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->hasMany(Commande::class);
     }
 
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
+    }
+
     public function adresse()
     {
         return $this->hasOne(Adresse::class);

@@ -18,6 +18,8 @@ class HomeController extends Controller
     public function index()
     {
         $plats = Plat::all();
+
+        // dd($plats[1]->avis->pluck('note')->avg());
         // dd(Auth::user()->adresse == null);
         return view('front.index', compact('plats'));
     }
