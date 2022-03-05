@@ -15,6 +15,7 @@
                                 <th scope="col" class="text-center">Numéro</th>
                                 <th scope="col" class="text-center">Montant</th>
                                 <th scope="col" class="text-center">Status</th>
+                                <th scope="col">Détail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,6 +24,10 @@
                                 <td class="text-center">{{ $commande->id }}</td>
                                 <td class="text-center">{{ $commande->montant }} €</td>
                                 <td class="text-center">{{ $commande->status }}</td>
+                                <td>
+                                    <a href="{{ route('user.commande_detail', $commande->id) }}"
+                                        class="btn text-secondary"><i class="bi bi-eye-fill"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Commande;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CommandeController extends Controller
 {
@@ -45,9 +46,10 @@ class CommandeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($commande)
     {
-        //
+        $commandes = Commande::find($commande);
+        return view('front.detail_commande', compact('commandes'));
     }
 
     /**

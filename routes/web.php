@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile/update_adresse/{user}', [App\Http\Controllers\Front\UserController::class, 'update_adresse'])->name('user.update_adresse');
 
     Route::get('commandes', [App\Http\Controllers\Front\CommandeController::class, 'index'])->name('user.commande_history');
+    Route::get('commandes_detail/{commande}', [App\Http\Controllers\Front\CommandeController::class, 'show'])->name('user.commande_detail');
     Route::get('preferences', [App\Http\Controllers\Front\PreferenceController::class, 'index'])->name('preference.index');
     Route::post('preferences/{plat}', [App\Http\Controllers\Front\PreferenceController::class, 'store'])->name('preference.store');
     Route::delete('preferences/{plat}', [App\Http\Controllers\Front\PreferenceController::class, 'destroy'])->name('preference.delete');
