@@ -29,7 +29,8 @@
                     <td>{{ $user->role }}</td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm me-2">Apeçu</a>
+                            {{-- <a href="{{ route('users.show', $user->id) }}"
+                                class="btn btn-info btn-sm me-2">Apeçu</a> --}}
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">modifier</a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @csrf

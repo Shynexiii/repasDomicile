@@ -128,9 +128,9 @@
                         </div>
 
                         <div class="card col-md-12">
-                            {{-- <form action="{{ route('checkout') }}" method="POST" class="card-body">
+                            <form action="{{ route('checkout') }}" method="POST" class="card-body">
                                 @csrf
-                                @method('POST') --}}
+                                @method('POST')
                                 <button type="submit" class="btn btn-primary btn-block btn-lg">Payer</button>
                             </form>
                         </div>

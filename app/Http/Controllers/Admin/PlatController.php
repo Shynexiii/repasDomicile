@@ -17,9 +17,19 @@ class PlatController extends Controller
      */
     public function index()
     {
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
         $plats = Plat::all();
         // dd(Auth::user()->name);
-        return view('admin.plats.index', compact('plats'));
+        return view('admin.plats.index', compact('plats', 'jours'));
     }
 
     /**
@@ -29,7 +39,17 @@ class PlatController extends Controller
      */
     public function create()
     {
-        return view('admin.plats.create');
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
+        return view('admin.plats.create', compact('jours'));
     }
 
     /**
@@ -44,6 +64,7 @@ class PlatController extends Controller
             'nom' => 'required',
             'description' => 'required',
             'prix' => 'required',
+            'jour' => 'required',
         ]);
 
         $plat = Plat::create($request->all());
@@ -70,7 +91,17 @@ class PlatController extends Controller
      */
     public function edit(Plat $plat)
     {
-        return view('admin.plats.edit', compact('plat'));
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
+        return view('admin.plats.edit', compact('plat', 'jours'));
     }
 
     /**
@@ -87,12 +118,14 @@ class PlatController extends Controller
             'nom' => 'required',
             'description' => 'required',
             'prix' => 'required',
+            'jour' => 'required',
         ]);
 
-        $editPlat->nom = $request['nom'];
-        $editPlat->description = $request['description'];
-        $editPlat->prix = $request['prix'];
-        $editPlat->image = $request['image'];
+        $editPlat->nom = $request->input('nom');
+        $editPlat->description = $request->input('description');
+        $editPlat->prix = $request->input('prix');
+        $editPlat->image = $request->input('image');
+        $editPlat->jour = $request->input('jour');
         $editPlat->save();
 
         return Redirect::route('plats.index');

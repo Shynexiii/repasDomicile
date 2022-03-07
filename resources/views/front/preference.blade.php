@@ -29,7 +29,7 @@
                                 <td class="text-center align-middle">
                                     @foreach ($jours as $key => $jour)
                                     @if ( $plat->jour == $key)
-                                    <h5 class="mb-0">{{ $jour }}</h5>
+                                    {{ $jour }}
                                     @endif
                                     @endforeach
                                 </td>
