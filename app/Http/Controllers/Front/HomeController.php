@@ -21,7 +21,11 @@ class HomeController extends Controller
 
         // dd($plats[1]->avis->pluck('note')->avg());
         // dd(Auth::user()->plats);
-        $prefences = Auth::user()->plats;
+        if (Auth::user()) {
+            $prefences = Auth::user()->plats;
+        } else {
+            $prefences = null;
+        }
         return view('front.index', compact('plats', 'prefences'));
     }
 

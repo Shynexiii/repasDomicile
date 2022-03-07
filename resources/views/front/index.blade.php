@@ -3,6 +3,7 @@
 @section('title', 'Accueil')
 
 @section('content')
+@auth
 @if ($prefences->isNotEmpty())
 <h3>Mes plats préférés</h3>
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
@@ -51,6 +52,7 @@
     @endforeach
 </div>
 @endif
+@endauth
 
 
 <h3 class="mt-3">Plats du jour</h3>
