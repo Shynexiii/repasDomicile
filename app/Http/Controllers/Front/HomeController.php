@@ -15,18 +15,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $plats = Plat::all();
-
-        // dd($plats[1]->avis->pluck('note')->avg());
-        // dd(Auth::user()->plats);
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
+        // dd($request);
+        if ($request->has('jour') && $request->input('jour') != 0) {
+            $plats = Plat::where('jour', $request->input('jour'))->get();
+        } else {
+            $plats = Plat::all();
+        }
+        $jourSelect = $request->input('jour');
         if (Auth::user()) {
             $prefences = Auth::user()->plats;
         } else {
             $prefences = null;
         }
-        return view('front.index', compact('plats', 'prefences'));
+
+        return view('front.index', compact('plats', 'prefences', 'jourSelect', 'jours'));
     }
 
     /**

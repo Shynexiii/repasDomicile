@@ -14,6 +14,7 @@
                             <tr>
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Nom</th>
+                                <th class="text-center">Jour</th>
                                 <th class="text-center">Prix</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -25,6 +26,13 @@
                                         class="img-fluid rounded-3" alt="{{ $plat->nom }}">
                                 </td>
                                 <td class="text-center align-middle">{{ $plat->nom }}</td>
+                                <td class="text-center align-middle">
+                                    @foreach ($jours as $key => $jour)
+                                    @if ( $plat->jour == $key)
+                                    <h5 class="mb-0">{{ $jour }}</h5>
+                                    @endif
+                                    @endforeach
+                                </td>
                                 <td class="text-center align-middle">{{ $plat->prix }}</td>
                                 <td class="col-md-1 col-lg-1 col-xl-1 text-center align-middle">
                                     <form action="{{ route('preference.delete', $plat->id) }}" method="POST">

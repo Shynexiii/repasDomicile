@@ -3,6 +3,24 @@
 @section('title', 'Accueil')
 
 @section('content')
+
+<h3 class="text-center">Affichez les plats par jour</h3>
+<div class="row ">
+    <form action="{{ route('front.index') }}" method="GET">
+        <div class="d-flex justify-content-center my-3">
+            <div class="col-md-4">
+                <select class="form-select" name="jour" aria-label="Default select example">
+                    <option disabled>Choisissez un jour</option>
+                    @foreach ($jours as $key => $jour)
+                    <option {{ $key==$jourSelect ? 'selected' : '' }} value="{{ $key }}">{{ $jour }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+</div>
+
 @auth
 @if ($prefences->isNotEmpty())
 <h3>Mes plats préférés</h3>
@@ -22,7 +40,6 @@
                     </div>
                     <p class="lead m-0">{{ $prefence->prix }} €</p>
                 </div>
-
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center">
@@ -54,8 +71,7 @@
 @endif
 @endauth
 
-
-<h3 class="mt-3">Plats du jour</h3>
+<h3 class="mt-3">Les plats</h3>
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
     @foreach ($plats as $plat)
     <div class="col mb-5">

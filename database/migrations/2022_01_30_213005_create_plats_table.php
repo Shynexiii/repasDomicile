@@ -19,6 +19,8 @@ class CreatePlatsTable extends Migration
             $table->string("description");
             $table->float("prix");
             $table->string("image");
+            $table->integer("jour");
+            $table->boolean("status");
             $table->timestamps();
         });
     }

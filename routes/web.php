@@ -24,6 +24,7 @@ Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->na
 
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('cart', [App\Http\Controllers\Front\CartContoller::class, 'index'])->name('cart.index');
     Route::put('cart/{plat}', [App\Http\Controllers\Front\CartContoller::class, 'store'])->name('cart.add');
     Route::put('cart/wishlist/{plat}', [App\Http\Controllers\Front\CartContoller::class, 'index'])->name('cart.wishlist');

@@ -16,8 +16,19 @@ class PreferenceController extends Controller
      */
     public function index()
     {
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
+
         $plats = auth()->user()->plats;
-        return view('front.preference', compact('plats'));
+        return view('front.preference', compact('plats', 'jours'));
     }
 
     /**

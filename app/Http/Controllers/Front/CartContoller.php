@@ -17,8 +17,21 @@ class CartContoller extends Controller
      */
     public function index(Plat $plat)
     {
+        // auth()->user()->adresse->nom = "aze";
+        // dd(auth()->user()->adresse);
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
+
         $carts = Cart::content();
-        return view('front.cart', compact('carts'));
+        return view('front.cart', compact('carts', 'jours'));
     }
 
     /**
@@ -48,7 +61,7 @@ class CartContoller extends Controller
             return redirect()->back()->with('error', 'Ce produit a déja été ajouté');
         }
 
-        Cart::add($plat->id, $plat->nom, 1, $plat->prix, 0, ['description' => $plat->description, 'image' => $plat->image])->associate('Plat');
+        Cart::add($plat->id, $plat->nom, 1, $plat->prix, 0, ['description' => $plat->description, 'image' => $plat->image])->associate(Plat::class);
         return redirect()->back()->with('success', 'Le produit a bien été ajouté au panier');
     }
 

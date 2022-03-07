@@ -15,6 +15,8 @@ class Plat extends Model
         'description',
         'prix',
         'image',
+        'jour',
+        'status'
     ];
 
     public function avis()

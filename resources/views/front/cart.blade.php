@@ -10,15 +10,16 @@
                 @if (Cart::count() <= 0) <h3 class="text-center">Votre panier est vide</h3>
                     @else
                     <div class="table-responsive">
-                        <table class="table table-borderless">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Prix unitaire</th>
-                                    <th scope="col">Quantité</th>
-                                    <th scope="col">Prix total</th>
-                                    <th scope="col">Supprimer</th>
+                                    <th class="text-center" scope="col">Image</th>
+                                    <th class="text-center" scope="col">Nom</th>
+                                    <th class="text-center" scope="col">jour</th>
+                                    <th class="text-center" scope="col">Prix unitaire</th>
+                                    <th class="text-center" scope="col">Quantité</th>
+                                    <th class="text-center" scope="col">Prix total</th>
+                                    <th class="text-center" scope="col">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,10 +29,17 @@
                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </td>
                                     <td>
-                                        <p class=" align-middle">
+                                        <p class="text-center align-middle">
                                         <h5>{{ $cart->name }}</h5>
                                         <p>{{ $cart->options->description }} </p>
                                         </p>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        @foreach ($jours as $key => $jour)
+                                        @if ($cart->model->jour == $key)
+                                        <h5 class="mb-0">{{ $jour }}</h5>
+                                        @endif
+                                        @endforeach
                                     </td>
                                     <td class="text-center align-middle">
                                         <h5 class="mb-0">{{ $cart->price }} € </h5>
@@ -85,7 +93,7 @@
                                 <div class="col-md-6">
                                     <label for="inputAddress2" class="form-label">Address</label>
                                     <input type="text" class="form-control @error('nom') is-invalid @enderror"
-                                        name="nom" value="{{ auth()->user()->adresse->nom }}"
+                                        name="nom" value="{{ auth()->user()->adresse->nom ?? old('nom')}}"
                                         placeholder="9-11 Pl. du Colonel Fabien">
                                     @error('nom')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +104,8 @@
                                 <div class="col-md-4">
                                     <label for="inputCity" class="form-label">Ville</label>
                                     <input type="text" class="form-control @error('ville') is-invalid @enderror"
-                                        name="ville" value="{{ auth()->user()->adresse->ville }}" placeholder="Paris">
+                                        name="ville" value="{{ auth()->user()->adresse->ville ?? old('ville')}}"
+                                        placeholder="Paris">
                                     @error('ville')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -106,7 +115,8 @@
                                 <div class="col-md-2">
                                     <label for="inputZip" class="form-label">Zip</label>
                                     <input type="text" class="form-control @error('code_postal') is-invalid @enderror"
-                                        name="code_postal" value="{{ auth()->user()->adresse->code_postal }}"
+                                        name="code_postal"
+                                        value="{{ auth()->user()->adresse->code_postal ?? old('code_postal') }}"
                                         placeholder="75010">
                                     @error('code_postal')
                                     <span class="invalid-feedback" role="alert">

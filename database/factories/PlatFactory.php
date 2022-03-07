@@ -29,6 +29,8 @@ class PlatFactory extends Factory
             'description' => implode(',', $this->faker->randomElements($ingredient, 4)),
             'prix' => $this->faker->randomFloat(2, 0, 100),
             'image' => 'https://dummyimage.com/450x300',
+            'jour' => random_int(1, 7),
+            'status' => $this->faker->boolean(80),
         ];
     }
 }
