@@ -27,7 +27,7 @@
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center">
                     <div class="btn-group">
-                        <form action="" method="POST">
+                        <form action="{{ route('cart.add', $plat->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-outline-dark mr-1">Ajouter au
