@@ -29,7 +29,9 @@
                     </div>
                     @if (auth()->user() == $avis->user)
                     <div class="d-flex justify-content-between mt-2 align-items-center">
-                        <small class="text-danger">Supprimer</small>
+                        {{-- <small class="text-danger">Supprimer</small> --}}
+                        <a href="{{ route('avis.destroy',$avis) }}"
+                            class="text-danger text-decoration-none">Supprimer</a>
                     </div>
                     @endif
                 </div>

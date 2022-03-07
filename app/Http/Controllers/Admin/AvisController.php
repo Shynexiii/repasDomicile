@@ -40,13 +40,15 @@ class AvisController extends Controller
      */
     public function store(Request $request, Plat $plat)
     {
-        // dd($plat, $request);
+        $request->validate([
+            'note' => 'min:1|max:4|required',
+            'commentaire' => 'string|required'
+        ]);
         $avis = new Avis;
         $avis->note = $request->input('note');
         $avis->commentaire = $request->input('commentaire');
         $avis->user()->associate(auth()->user());
         $avis->plat()->associate($plat);
-        // dd($avis);
         $avis->save();
         return back();
     }
@@ -61,10 +63,6 @@ class AvisController extends Controller
     {
         $plat = Plat::find($plat);
         $avis = Avis::all();
-        // dd(auth()->user()->commandes);
-        // dd(auth()->user(), auth()->user()->commandes[0]->plats, auth()->user()->commandes[0]->status);
-
-        // dd($plat->avis[0]->user->first_name);
         return view('front.Avis.avis', compact('plat', 'avis'));
     }
 
@@ -97,8 +95,9 @@ class AvisController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Avis $avis)
     {
-        //
+        $avis->delete();
+        return back();
     }
 }

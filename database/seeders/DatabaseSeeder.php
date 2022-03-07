@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Adresse;
 use Faker\Factory;
+use App\Models\Avis;
 use App\Models\Plat;
 use App\Models\User;
+use App\Models\Adresse;
+use App\Models\Commande;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
@@ -46,17 +48,23 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        Plat::factory(20)->create();
+
         $usersX = User::find([1, 2]);
         foreach ($usersX as $user) {
             $adresse = Adresse::factory()->make();
             $user->adresse()->save($adresse);
         }
 
-
-        User::factory(5)->create()->each(function ($user) {
+        User::factory(38)->create()->each(function ($user) {
             $adresse = Adresse::factory()->make();
             $user->adresse()->save($adresse);
         });
-        Plat::factory(10)->create();
+
+
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     Commande::factory()->count(random_int(1, 4))->for($user)->create();
+        // }
     }
 }
