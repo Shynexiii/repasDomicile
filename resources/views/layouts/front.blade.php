@@ -40,14 +40,14 @@
                 @if (Route::has('login'))
                 <ul class="navbar-nav">
                     <li class="ml-2">
-                        <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="btn btn-outline-secondary" href="{{ route('login') }}">{{ __("Se connecter") }}</a>
                     </li>
                 </ul>
                 @endif
                 @if (Route::has('register'))
                 <ul class="navbar-nav">
                     <li class="ml-2">
-                        <a class="btn btn-outline-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="btn btn-outline-secondary" href="{{ route('register') }}">{{ __("S'inscrire") }}</a>
                     </li>
                 </ul>
                 @endif
