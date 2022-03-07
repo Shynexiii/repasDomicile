@@ -36,10 +36,16 @@ class PreferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Plat $plat)
+    public function storePreference(Request $request, Plat $plat)
     {
         auth()->user()->plats()->toggle([$plat->id]);
         return redirect()->back()->with('success', 'Le plat à bien été ajouté a vos préférences');
+    }
+
+    public function removePreference(Request $request, Plat $plat)
+    {
+        auth()->user()->plats()->toggle([$plat->id]);
+        return redirect()->back()->with('success', 'Le plat à bien été enlevé de vos préférences');
     }
 
     /**
