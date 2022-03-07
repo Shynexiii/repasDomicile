@@ -26,7 +26,7 @@ class CommandeController extends Controller
             '7' => 'Dimanche',
         ];
         $commandes = auth()->user()->commandes;
-        return view('front.commande', compact('commandes'));
+        return view('front.commande', compact('commandes', 'jours'));
     }
 
     /**
