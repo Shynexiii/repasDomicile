@@ -13,6 +13,7 @@
                             <tr class="text-center">
                                 <th scope="col">Image</th>
                                 <th scope="col">Nom</th>
+                                <th class="text-center">Jour</th>
                                 <th scope="col">Prix unitaire</th>
                                 <th scope="col">Quantité</th>
                                 <th scope="col">Prix total</th>
@@ -29,6 +30,13 @@
                                         alt="{{ $plat->nom }}" width="100" height="100">
                                 </td>
                                 <td class="align-middle">{{ $plat->nom }}</td>
+                                <td class="text-center align-middle">
+                                    @foreach ($jours as $key => $jour)
+                                    @if ( $plat->jour == $key)
+                                    {{ $jour }}
+                                    @endif
+                                    @endforeach
+                                </td>
                                 <td class="align-middle">{{ $plat->prix }}</td>
                                 <td class="align-middle">{{ $plat->getOriginal()['pivot_quantite'] }}</td>
                                 <td class="align-middle">{{ $plat->prix * $plat->getOriginal()['pivot_quantite'] }}

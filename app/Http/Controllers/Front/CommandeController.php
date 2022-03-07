@@ -15,6 +15,16 @@ class CommandeController extends Controller
      */
     public function index()
     {
+        $jours = [
+            '0' => 'Tous les jours',
+            '1' => 'Lundi',
+            '2' => 'Mardi',
+            '3' => 'Mercredi',
+            '4' => 'Jeudi',
+            '5' => 'Vendredi',
+            '6' => 'Samedi',
+            '7' => 'Dimanche',
+        ];
         $commandes = auth()->user()->commandes;
         return view('front.commande', compact('commandes'));
     }
