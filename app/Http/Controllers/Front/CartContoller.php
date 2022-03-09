@@ -18,7 +18,7 @@ class CartContoller extends Controller
     public function index(Plat $plat)
     {
         // auth()->user()->adresse->nom = "aze";
-        // dd(auth()->user()->adresse);
+        // dd(Cart::subtotal());
         $jours = [
             '0' => 'Tous les jours',
             '1' => 'Lundi',

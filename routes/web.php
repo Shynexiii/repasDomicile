@@ -50,4 +50,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'show'])->name('avis.show');
     Route::post('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'store'])->name('avis.store');
     Route::get('avis/delete/{avis}', [App\Http\Controllers\Admin\AvisController::class, 'destroy'])->name('avis.destroy');
+
+    Route::get('facture/{id}', [App\Http\Controllers\Front\FactureController::class, 'facture'])->name('facture.index');
 });

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Stripe\Stripe;
-use Stripe\Customer;
 use App\Models\Commande;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Redirect;
 
 class PaiementContoller extends Controller
 {
@@ -51,21 +51,22 @@ class PaiementContoller extends Controller
             'cancel_url' => route('cart.index'),
         ]);
 
-        session()->put('client', $session->id);
+        session()->flash('client', $session->id);
         return redirect($session->url);
     }
 
     public function success()
     {
+
         $client = session('client');
-        if ($client != null) {
+        if (session()->has('client')) {
             $cart = Cart::content();
             foreach ($cart as $value) {
                 $id[] = $value->id;
                 $quantite[] = $value->qty;
             }
             $commande = new Commande;
-            $commande->montant = Cart::total();
+            $commande->montant = Cart::subtotal();
             $commande->status = 'En cours';
             $commande->adresse = auth()->user()->adresse->nom . ', ' . auth()->user()->adresse->ville . ', ' . auth()->user()->adresse->code_postal;
             $commande->mode_paiement = "Card";
@@ -74,6 +75,8 @@ class PaiementContoller extends Controller
             foreach (Cart::content() as $value) {
                 $commande->plats()->attach($value->id, ['quantite' => $value->qty]);
             }
+        } else {
+            return view('front.successPage');
         }
         Cart::destroy();
         return view('front.successPage');

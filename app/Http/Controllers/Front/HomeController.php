@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->session()->all());
         $jours = [
             '0' => 'Tous les jours',
             '1' => 'Lundi',

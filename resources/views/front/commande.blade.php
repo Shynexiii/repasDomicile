@@ -16,6 +16,7 @@
                                 <th scope="col" class="text-center">Montant</th>
                                 <th scope="col" class="text-center">Status</th>
                                 <th scope="col">Détail</th>
+                                <th scope="col">Facture</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,10 @@
                                 <td>
                                     <a href="{{ route('user.commande_detail', $commande->id) }}"
                                         class="btn text-secondary"><i class="bi bi-eye-fill"></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('facture.index', $commande->id) }}" class="btn text-secondary"
+                                        target="_blank" rel="noopener noreferrer"><i class="bi bi-download"></i></a>
                                 </td>
                             </tr>
                             @endforeach
