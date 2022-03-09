@@ -76,7 +76,7 @@ class PaiementContoller extends Controller
                 $commande->plats()->attach($value->id, ['quantite' => $value->qty]);
             }
         } else {
-            return view('front.successPage');
+            return redirect()->route('front.index');
         }
         Cart::destroy();
         return view('front.successPage');
