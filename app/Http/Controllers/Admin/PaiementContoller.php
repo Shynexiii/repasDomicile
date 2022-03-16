@@ -51,7 +51,7 @@ class PaiementContoller extends Controller
             'cancel_url' => route('cart.index'),
         ]);
 
-        session()->flash('client', $session->id);
+        session()->push('client', $session->id);
         return redirect($session->url);
     }
 
@@ -68,9 +68,9 @@ class PaiementContoller extends Controller
             $commande = new Commande;
             $commande->montant = Cart::subtotal();
             $commande->status = 'En cours';
-            $commande->adresse = auth()->user()->adresse->nom . ', ' . auth()->user()->adresse->ville . ', ' . auth()->user()->adresse->code_postal;
             $commande->mode_paiement = "Card";
             $commande->user()->associate(auth()->user());
+            $commande->adresse_id = auth()->user()->adresse->id;
             $commande->save();
             foreach (Cart::content() as $value) {
                 $commande->plats()->attach($value->id, ['quantite' => $value->qty]);

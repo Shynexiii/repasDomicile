@@ -17,7 +17,6 @@ class CreateCommandesTable extends Migration
             $table->id();
             $table->string('montant');
             $table->string('status');
-            $table->string('adresse');
             $table->string('mode_paiement');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

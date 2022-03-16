@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->session()->all());
+        // dd(auth()->user()->adresse);
         $jours = [
             '0' => 'Tous les jours',
             '1' => 'Lundi',
