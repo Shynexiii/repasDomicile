@@ -25,6 +25,6 @@ class Commande extends Model
 
     public function adresse()
     {
-        return $this->hasOne(Adresse::class);
+        return $this->hasOne(Adresse::class, 'id');
     }
 }

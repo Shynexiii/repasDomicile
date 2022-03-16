@@ -43,7 +43,7 @@
                                 </td>
                                 @if ($commandes->status == "Livrée")
                                 <td class="align-middle"><a href="{{ route('avis.show', $plat->id) }}"><i
-                                            class="bi bi-pencil-square text-primary"></i></a>
+                                            class="bi bi-pencil-square text-secondary"></i></a>
                                 </td>
                                 @endif
                             </tr>

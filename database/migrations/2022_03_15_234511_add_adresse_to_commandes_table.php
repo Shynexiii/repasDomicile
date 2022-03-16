@@ -26,7 +26,7 @@ class AddAdresseToCommandesTable extends Migration
     public function down()
     {
         Schema::table('commandes', function (Blueprint $table) {
-            //
+            $table->dropForeign(['adresse_id']);
         });
     }
 }

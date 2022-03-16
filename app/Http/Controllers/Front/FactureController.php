@@ -22,7 +22,7 @@ class FactureController extends Controller
         ]);
         $serial = 'CL' . auth()->user()->id . '-';
         foreach (auth()->user()->commandes as $commande) {
-            if ($commande->id == $id) {
+            if ($commande->id == $id || auth()->user()->role === "admin") {
                 $serial .= $commande->id . '-';
                 foreach ($commande->plats as $plat) {
                     $items[] =

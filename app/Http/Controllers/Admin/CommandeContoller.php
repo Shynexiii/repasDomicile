@@ -16,6 +16,7 @@ class CommandeContoller extends Controller
      */
     public function index()
     {
+        // dd(auth()->user()->adresse, auth()->user()->commandes[0]->adresse);
         $commandes = Commande::all();
         return view('admin.commandes.index', compact('commandes'));
     }

@@ -19,12 +19,12 @@ class PaiementContoller extends Controller
             'ville' => 'required|string|max:50',
             'code_postal' => 'required|digits:5',
         ]);
-        if (auth()->user()->adresse->nom == null || auth()->user()->adresse->ville == null || auth()->user()->adresse->code_postal == null) {
-            auth()->user()->adresse->nom = $request->input('nom');
-            auth()->user()->adresse->ville = $request->input('ville');
-            auth()->user()->adresse->code_postal = $request->input('code_postal');
-            auth()->user()->adresse->save();
-        }
+
+        auth()->user()->adresse->nom = $request->input('nom');
+        auth()->user()->adresse->ville = $request->input('ville');
+        auth()->user()->adresse->code_postal = $request->input('code_postal');
+        auth()->user()->adresse->save();
+
         $carts = Cart::content();
         foreach ($carts as $value) {
             $plat['line_items'][] = [
