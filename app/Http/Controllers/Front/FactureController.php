@@ -16,6 +16,7 @@ class FactureController extends Controller
             'phone'           => auth()->user()->phone,
             'custom_fields' => [
                 'email' => auth()->user()->email,
+                'adresse' => auth()->user()->adresse->nom . ', ' . auth()->user()->adresse->ville . ', ' . auth()->user()->adresse->code_postal,
 
             ],
         ]);
