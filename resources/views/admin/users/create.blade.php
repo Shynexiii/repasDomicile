@@ -14,7 +14,7 @@
 @endif
 <div class="card">
     <div class="card-body">
-        <form method="POST" action="{{ route('plats.store') }}">
+        <form method="POST" action="{{ route('users.store') }}">
             @csrf
             <div class="form-group">
                 <label for="last_name">Nom</label>
@@ -29,8 +29,8 @@
                 <input type="text" name="email" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="telephone">Téléphone</label>
-                <input type="text" name="telephone" class="form-control" />
+                <label for="phone">Téléphone</label>
+                <input type="text" name="phone" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>

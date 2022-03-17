@@ -18,8 +18,13 @@ class AvisController extends Controller
     public function index()
     {
         $avis = Avis::all();
-        dd($avis);
         return view('front.Avis.avis', compact('avis'));
+    }
+
+    public function adminList()
+    {
+        $avis = Avis::all();
+        return view('admin.avis.index', compact('avis'));
     }
 
     /**

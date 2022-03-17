@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(request()->is('admin/home'));
         return view('admin.accueil.index');
     }
 }

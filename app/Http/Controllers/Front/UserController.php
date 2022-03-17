@@ -82,8 +82,6 @@ class UserController extends Controller
             'username' => 'required|min:4|string|max:255',
             'email' => 'required|email|string|max:255',
             'phone' => 'sometimes|digits:10',
-            'current_password' => 'sometimes|password',
-            'password' => 'sometimes|confirmed',
         ]);
         // dd($user);
         $user->name = $request->name;

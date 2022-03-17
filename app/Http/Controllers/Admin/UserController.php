@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use App\DataTables\UsersDataTable;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,9 +18,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(15);
 
         return view('admin.users.index', compact('users'));
+    }
+
+    public function index2(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('admin.users.data');
     }
 
     /**
@@ -44,8 +50,8 @@ class UserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:4', 'confirmed'],
             'phone' => ['nullable', 'digits:10'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
 
         User::create([
@@ -54,6 +60,7 @@ class UserController extends Controller
             'email' => $request['email'],
             'phone' => $request['phone'],
             'password' => Hash::make($request['password']),
+            'role' => 'client',
         ]);
 
         return redirect()->route('users.index');
@@ -90,20 +97,25 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $editUser = User::find($user->id);
         $this->validate($request, [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:4', 'confirmed'],
             'phone' => ['nullable', 'digits:10'],
-        ]);
+            'password' => ['confirmed', 'sometimes'],
 
+        ]);
         $editUser->last_name = $request['last_name'];
         $editUser->first_name = $request['first_name'];
         $editUser->email = $request['email'];
         $editUser->phone = $request['phone'];
-        $editUser->password = Hash::make($request['password']);
+        if ($request->filled('password')) {
+            $editUser->password = Hash::make($request['password']);
+        }
+        // dd($editUser);
+
         $editUser->save();
 
         return redirect()->route('users.index');
@@ -118,6 +130,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('plats.index');
+        return redirect()->route('users.index');
     }
 }

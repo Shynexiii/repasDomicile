@@ -5,8 +5,8 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-striped ">
+        {{-- <div class="table-responsive"> --}}
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Numéro</th>
@@ -43,7 +43,8 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+            {{--
+        </div> --}}
     </div>
 </div>
 @endsection

@@ -16,7 +16,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Téléphone</th>
                     <th scope="col">Role</th>
-                    <th scope="col" style="width: 15%">Action</th>
+                    <th scope="col" style="width: 15%" class="text-center align-middle">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,11 +31,12 @@
                         <div class="d-flex">
                             {{-- <a href="{{ route('users.show', $user->id) }}"
                                 class="btn btn-info btn-sm me-2">Apeçu</a> --}}
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">modifier</a>
+                            <a href="{{ route('users.edit', $user->id) }}"
+                                class="btn btn-warning btn-sm d-flex justify-content-center">modifier</a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <div class="col-sm">
+                                <div class="col-sm d-flex justify-content-center">
                                     <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                 </div>
                             </form>
