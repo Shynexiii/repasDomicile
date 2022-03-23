@@ -19,6 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $user = Auth::user();
         // $u = User::find($user->id)->adresse()->get();
         // dd($u, $user->adresse()->ville);
@@ -78,14 +79,14 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required|min:4|string|max:255',
-            'username' => 'required|min:4|string|max:255',
+            'last_name' => 'required|min:4|string|max:255',
+            'first_name' => 'required|min:4|string|max:255',
             'email' => 'required|email|string|max:255',
-            'phone' => 'sometimes|digits:10',
+            'phone' => 'required|digits:10',
         ]);
-        // dd($user);
-        $user->name = $request->name;
-        $user->username = $request->username;
+        // dd($user, $request);
+        $user->last_name = $request->last_name;
+        $user->first_name = $request->first_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
@@ -94,11 +95,11 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, User $user)
     {
+        // dd($request);
         $request->validate([
             'current_password' => 'sometimes|password',
             'password' => 'sometimes|confirmed',
         ]);
-        // dd($request);
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->back()->with('success', 'Le mot de passe à bien été mis à jour.');
@@ -106,12 +107,12 @@ class UserController extends Controller
 
     public function update_adresse(Request $request, User $user)
     {
+        // dd($user->adresse);
         $request->validate([
             'nom' => 'sometimes|string|max:255',
             'ville' => 'sometimes|string|max:50',
             'code_postal' => 'sometimes|digits:5',
         ]);
-        // dd($user->adresse);
         $user->adresse->nom = $request->nom;
         $user->adresse->ville = $request->ville;
         $user->adresse->code_postal = $request->code_postal;

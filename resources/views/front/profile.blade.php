@@ -25,8 +25,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputNom">Nom</label>
                                 <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
-                                    id="inputNom" name="last_name" value="{{ $user->last_name ?? old('last_name') }}"
-                                    placeholder="Nom">
+                                    id="inputNom" name="last_name" value="{{ $user->last_name }}" placeholder="Nom">
                                 @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -36,8 +35,8 @@
                             <div class="form-group col-md-6">
                                 <label for="inputPrenom">Prénom</label>
                                 <input type="text" class="form-control @error('first_name') is-invalid @enderror"
-                                    id="inputPrenom" name="first_name"
-                                    value="{{ $user->first_name ?? old('first_name') }}" placeholder="Prenom">
+                                    id="inputPrenom" name="first_name" value="{{ $user->first_name }}"
+                                    placeholder="Prenom">
                                 @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -49,8 +48,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputEmail">Email</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    id="inputEmail" name="email" value="{{ $user->email ?? old('email') }}"
-                                    placeholder="Email">
+                                    id="inputEmail" name="email" value="{{ $user->email }}" placeholder="Email">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -60,7 +58,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputPhone">Numéro de téléphone</label>
                                 <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                    id="inputPhone" name="phone" value="{{ $user->phone ?? old('phone') }}"
+                                    id="inputPhone" name="phone" value="{{ $user->phone }}"
                                     placeholder="Numéro de téléphone">
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">

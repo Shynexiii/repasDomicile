@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avis;
+use App\Models\Commande;
+use App\Models\Plat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +28,15 @@ class HomeController extends Controller
     public function index()
     {
         // dd(request()->is('admin/home'));
-        return view('admin.accueil.index');
+        $userCount = User::count();
+        $platCount = Plat::count();
+        $commandeCount = Commande::count();
+        $montantTotal = Commande::sum('montant');
+        return view('admin.accueil.index', compact(
+            'userCount',
+            'platCount',
+            'commandeCount',
+            'montantTotal'
+        ));
     }
 }
