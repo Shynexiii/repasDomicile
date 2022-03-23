@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,14 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(15);
+        $users = User::all();
 
         return view('admin.users.index', compact('users'));
-    }
-
-    public function index2(UsersDataTable $dataTable)
-    {
-        return $dataTable->render('admin.users.data');
     }
 
     /**

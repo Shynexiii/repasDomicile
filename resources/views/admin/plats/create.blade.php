@@ -10,19 +10,20 @@
             @csrf
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" class="form-control" />
+                <input type="text" name="nom" value="{{ old('nom') }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" cols="30" rows="5" class="form-control"></textarea>
+                <textarea name="description" value="{{ old('description') }}" cols="30" rows="5"
+                    class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label for="prix">Prix</label>
-                <input type="text" name="prix" class="form-control" />
+                <input type="text" name="prix" value="{{ old('prix') }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="image">Image</label>
-                <input type="text" name="image" class="form-control" />
+                <input type="text" name="image" value="{{ old('image') }}" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="jour" class="form-label">Jour de disponibilité</label>

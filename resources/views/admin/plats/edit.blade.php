@@ -24,7 +24,6 @@
             <div class="form-group">
                 <label for="image">Image</label>
                 <input type="text" name="image" class="form-control" value="{{ $plat->image }}" />
-                {{-- <img src="{{ $plat->image }}" class="img-thumbnail" alt="..."> --}}
             </div>
             <div class="form-group">
                 <label for="jour" class="form-label">Jour de disponibilité</label>
