@@ -15,7 +15,7 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('montant');
+            $table->double('montant');
             $table->string('status');
             $table->string('mode_paiement');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
