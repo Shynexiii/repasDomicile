@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avis;
-use App\Models\Commande;
 use App\Models\Plat;
 use App\Models\User;
+use App\Models\Commande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -31,12 +32,14 @@ class HomeController extends Controller
         $users = User::all();
         $platCount = Plat::count();
         $commandes = Commande::all();
-        $montantTotal = Commande::sum('montant');
+        $montantTotal = floatval(Commande::sum('montant'));
+        // $montantTotal1 = Commande::select(DB::raw('sum(cast(montant as double))'))->first();
+        // dd($montantTotal);
         return view('admin.accueil.index', compact(
             'users',
             'platCount',
             'commandes',
-            'montantTotal'
+            'montantTotal',
         ));
     }
 }
