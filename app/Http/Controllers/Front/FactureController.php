@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use LaravelDaily\Invoices\Invoice;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use LaravelDaily\Invoices\Classes\Buyer;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
 
@@ -21,7 +22,9 @@ class FactureController extends Controller
             ],
         ]);
         foreach (auth()->user()->commandes as $commande) {
+            $serial = 'CL' . auth()->user()->id . '-' . $commande->created_at->format('ymdhi');
             if ($commande->id == $id || auth()->user()->role === "admin") {
+                $serial .= $commande->id;
                 foreach ($commande->plats as $plat) {
                     $items[] =
                         (new InvoiceItem())
@@ -37,6 +40,7 @@ class FactureController extends Controller
 
 
         $invoice = Invoice::make()
+            ->serialNumberFormat($serial)
             ->buyer($customer)
             ->addItems($items);
 
