@@ -20,10 +20,8 @@ class FactureController extends Controller
 
             ],
         ]);
-        $serial = 'CL' . auth()->user()->id . '-';
         foreach (auth()->user()->commandes as $commande) {
             if ($commande->id == $id || auth()->user()->role === "admin") {
-                $serial .= $commande->id . '-';
                 foreach ($commande->plats as $plat) {
                     $items[] =
                         (new InvoiceItem())
@@ -31,8 +29,6 @@ class FactureController extends Controller
                         ->description($plat->description)
                         ->pricePerUnit($plat->prix)
                         ->quantity($plat->getOriginal()['pivot_quantite']);
-
-                    $serial .= $plat->id;
                 }
             } else {
                 abort(404);
@@ -42,7 +38,6 @@ class FactureController extends Controller
 
         $invoice = Invoice::make()
             ->buyer($customer)
-            ->serialNumberFormat($serial)
             ->addItems($items);
 
         return $invoice->stream();
