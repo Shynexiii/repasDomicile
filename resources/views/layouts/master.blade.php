@@ -70,7 +70,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script>
         $(document).ready( function () {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                language: {
+                    url: '/DataTable/DataTable_Fr.json'
+                }
+            } );
         } );
     </script>
     @stack('scripts')
