@@ -107,7 +107,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($commandes as $commande)
+                            @foreach ($commandes->take(4)->sortDesc() as $commande)
                             <tr class="text-center">
                                 <th scope="row">{{ $commande->id }}</th>
                                 <td>{{ $commande->montant }}</td>
@@ -147,7 +147,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users->take(3) as $user)
+                            @foreach ($users->take(4)->sortDesc() as $user)
                             <tr class="text-center">
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->last_name }}</td>
