@@ -27,15 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd(request()->is('admin/home'));
-        $userCount = User::count();
+        // dd($users->adresse->nom);
+        $users = User::all();
         $platCount = Plat::count();
-        $commandeCount = Commande::count();
+        $commandes = Commande::all();
         $montantTotal = Commande::sum('montant');
         return view('admin.accueil.index', compact(
-            'userCount',
+            'users',
             'platCount',
-            'commandeCount',
+            'commandes',
             'montantTotal'
         ));
     }

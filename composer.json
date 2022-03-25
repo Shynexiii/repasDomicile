@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "ext-intl": "*",
         "bumbummen99/shoppingcart": "^4.1",
+        "consoletvs/charts": "7.*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jzonta/faker-restaurant": "^2.0",
@@ -19,8 +21,7 @@
         "laravel/ui": "^3.4",
         "laraveldaily/laravel-invoices": "^3.0",
         "stripe/stripe-php": "^7.114",
-        "yajra/laravel-datatables": "^1.5",
-        "ext-intl": "*"
+        "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
