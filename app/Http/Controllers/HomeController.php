@@ -32,8 +32,9 @@ class HomeController extends Controller
         $users = User::all();
         $platCount = Plat::count();
         $commandes = Commande::all();
-        $montantTotal = DB::table('commandes')->select(DB::raw('SUM(montant) as total_sales'))->get();
-        // dd($montantTotal);
+        $montant = $commandes->pluck('montant');
+        $montantTotal = array_sum($montant->toArray());
+        // dd(array_sum($montantTotal->toArray()));
         return view('admin.accueil.index', compact(
             'users',
             'platCount',
