@@ -32,14 +32,10 @@ class HomeController extends Controller
         $users = User::all();
         $platCount = Plat::count();
         $commandes = Commande::all();
-        $montant = $commandes->pluck('montant');
-        $montantTotal = array_sum($montant->toArray());
-        // dd(array_sum($montantTotal->toArray()));
         return view('admin.accueil.index', compact(
             'users',
             'platCount',
             'commandes',
-            'montantTotal',
         ));
     }
 }
