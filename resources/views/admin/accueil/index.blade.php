@@ -52,7 +52,7 @@
 
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{ $montantTotal }} €</h3>
+                <h3>{{ $montantTotal->getAttributes()['sum(cast(montant as double))'] }} €</h3>
                 <p>Revenues</p>
             </div>
             <div class="icon">

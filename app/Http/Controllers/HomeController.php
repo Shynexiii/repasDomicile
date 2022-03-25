@@ -32,9 +32,9 @@ class HomeController extends Controller
         $users = User::all();
         $platCount = Plat::count();
         $commandes = Commande::all();
-        $montantTotal = floatval(Commande::sum('montant'));
-        // $montantTotal1 = Commande::select(DB::raw('sum(cast(montant as double))'))->first();
-        // dd($montantTotal);
+        // $montantTotal = floatval(Commande::sum('montant'));
+        $montantTotal = Commande::select(DB::raw('sum(cast(montant as double))'))->first();
+        // dd($montantTotal->getAttributes()['sum(cast(montant as double))']);
         return view('admin.accueil.index', compact(
             'users',
             'platCount',
