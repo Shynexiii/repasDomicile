@@ -18,7 +18,7 @@ Route::prefix('admin')->group(function () {
             'commandes' => App\Http\Controllers\Admin\CommandeContoller::class,
         ]);
     });
-    // Route::get('commandes/facture/{id}', [App\Http\Controllers\Front\FactureController::class, 'facture'])->name('commandes.facture.index');
+    Route::get('commandes/facture/{id}', [App\Http\Controllers\Front\FactureController::class, 'facture'])->name('commandes.facture.index');
     Route::get('avis', [App\Http\Controllers\Admin\AvisController::class, 'adminList'])->name('admin.avis');
 });
 

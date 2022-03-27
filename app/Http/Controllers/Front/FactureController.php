@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use LaravelDaily\Invoices\Invoice;
 use App\Http\Controllers\Controller;
+use App\Models\Commande;
 use Carbon\Carbon;
 use LaravelDaily\Invoices\Classes\Buyer;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
@@ -12,38 +13,38 @@ class FactureController extends Controller
 {
     public function facture(int $id)
     {
-        $customer = new Buyer([
-            'name'          => auth()->user()->first_name . ' ' . auth()->user()->last_name,
-            'phone'           => auth()->user()->phone,
-            'custom_fields' => [
-                'email' => auth()->user()->email,
-                'adresse' => auth()->user()->adresse->nom . ', ' . auth()->user()->adresse->ville . ', ' . auth()->user()->adresse->code_postal,
+        $commande = commande::find($id);
+        if ($commande == null) {
+            abort(404);
+        } elseif (auth()->user() == $commande->user || auth()->user()->role == "admin") {
+            $customer = new Buyer([
+                'name'          => $commande->user->first_name . ' ' . $commande->user->last_name,
+                'phone'           => $commande->user->phone,
+                'custom_fields' => [
+                    'email' => $commande->user->email,
+                    'adresse' => $commande->user->adresse->nom . ', ' . $commande->user->adresse->ville . ', ' . $commande->user->adresse->code_postal,
 
-            ],
-        ]);
-        foreach (auth()->user()->commandes as $commande) {
-            $serial = 'CL' . auth()->user()->id . '-' . $commande->created_at->format('ymdhi');
-            if ($commande->id == $id || auth()->user()->role === "admin") {
-                $serial .= $commande->id;
-                foreach ($commande->plats as $plat) {
-                    $items[] =
-                        (new InvoiceItem())
-                        ->title($plat->nom)
-                        ->description($plat->description)
-                        ->pricePerUnit($plat->prix)
-                        ->quantity($plat->getOriginal()['pivot_quantite']);
-                }
-            } else {
-                abort(404);
+                ],
+            ]);
+
+            $serial = "CL" . $commande->user->id . "-" . $commande->created_at->format("ymdhi");
+            $serial .= $commande->id;
+            foreach ($commande->plats as $plat) {
+                $items[] =
+                    (new InvoiceItem())
+                    ->title($plat->nom)
+                    ->description($plat->description)
+                    ->pricePerUnit($plat->prix)
+                    ->quantity($plat->getOriginal()['pivot_quantite']);
             }
+
+            $invoice = Invoice::make()
+                ->serialNumberFormat($serial)
+                ->buyer($customer)
+                ->addItems($items);
+            return $invoice->stream();
+        } else {
+            abort(404);
         }
-
-
-        $invoice = Invoice::make()
-            ->serialNumberFormat($serial)
-            ->buyer($customer)
-            ->addItems($items);
-
-        return $invoice->stream();
     }
 }
