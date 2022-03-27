@@ -32,11 +32,11 @@
                             }} {{
                             $commande->adresse->code_postal ?? '' }}</td>
                         <td class="align-middle">{{ $commande->mode_paiement }}</td>
-                        <td>
+                        <td class="align-middle">
                             <a href="{{ route('commandes.show', $commande->id) }}" class="btn text-secondary btn-lg"><i
                                     class="bi bi-eye-fill"></i></a>
                         </td>
-                        <td>
+                        <td class="align-middle">
                             <a href="{{ route('commandes.facture.index', $commande->id) }}" class="btn text-secondary"
                                 target="_blank" rel="noopener noreferrer"><i class="bi bi-download"></i></a>
                         </td>
