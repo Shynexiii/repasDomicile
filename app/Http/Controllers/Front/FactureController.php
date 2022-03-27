@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Front;
 use LaravelDaily\Invoices\Invoice;
 use App\Http\Controllers\Controller;
 use App\Models\Commande;
-use Carbon\Carbon;
 use LaravelDaily\Invoices\Classes\Buyer;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
 
@@ -41,7 +40,8 @@ class FactureController extends Controller
             $invoice = Invoice::make()
                 ->serialNumberFormat($serial)
                 ->buyer($customer)
-                ->addItems($items);
+                ->addItems($items)
+                ->filename($commande->user->first_name . '_' . $commande->user->last_name . '_' . $commande->created_at->format("ymdhi"));
             return $invoice->stream();
         } else {
             abort(404);
