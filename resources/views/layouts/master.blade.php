@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-
     <link rel="stylesheet" href="/css/app.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -30,7 +24,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-sm-6">
                             <h1 class="m-0">@yield('pageTitle')</h1>
                         </div><!-- /.col -->
-
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -39,37 +32,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
-                    @if (Session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
+                    <div class="row">
+                        @if (Session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @elseif (Session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        @yield('content')
                     </div>
-                    @elseif (Session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                    @endif
-                    @yield('content')
+                    <!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
-        @include("partials.footer.footer")
+
+        @include('partials.footer.footer')
     </div>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-    <script src=/js/app.js></script>
 
-    @yield('script')
+    <!-- jQuery -->
     <script src="{{ mix('js/app.js') }}"></script>
     <!-- Charting library -->
     <script src="https://unpkg.com/chart.js@^2.9.3/dist/Chart.min.js"></script>
     <!-- Chartisan -->
     <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
-
-
     <script>
         $(document).ready( function () {
             $('#myTable').DataTable({
