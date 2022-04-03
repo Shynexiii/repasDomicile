@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class DatabaseSeeder extends Seeder
 {
@@ -61,10 +62,27 @@ class DatabaseSeeder extends Seeder
             $user->adresse()->save($adresse);
         });
 
+        $users = User::all();
+        foreach ($users as $user) {
+            for ($i = 0; $i <= random_int(1, 5); $i++) {
+                Cart::destroy();
+                $x = random_int(1, 4);
+                for ($j = 0; $j < $x; $j++) {
+                    $plat = Plat::all()->random();
+                    Cart::add($plat->id, $plat->nom, random_int(1, 4), $plat->prix, 0, ['description' => $plat->description, 'image' => $plat->image])->associate(Plat::class);
+                }
 
-        // $users = User::all();
-        // foreach ($users as $user) {
-        //     Commande::factory()->count(random_int(1, 4))->for($user)->create();
-        // }
+                $commande = new Commande;
+                $commande->montant = Cart::subtotal();
+                $commande->status = $faker->randomElement(['En cours', 'Livrée']);
+                $commande->mode_paiement = "Card";
+                $commande->user()->associate($user);
+                $commande->adresse_id = $user->adresse->id;
+                $commande->save();
+                foreach (Cart::content() as $value) {
+                    $commande->plats()->attach($value->id, ['quantite' => $value->qty]);
+                }
+            }
+        }
     }
 }
