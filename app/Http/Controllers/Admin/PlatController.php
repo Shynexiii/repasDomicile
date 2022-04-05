@@ -69,7 +69,7 @@ class PlatController extends Controller
 
         $plat = Plat::create($request->all());
 
-        return Redirect::route('plats.index');
+        return Redirect::route('plats.index')->with('success', 'Le plat a bien été enregistrer');
     }
 
     /**
@@ -128,7 +128,7 @@ class PlatController extends Controller
         $editPlat->jour = $request->input('jour');
         $editPlat->save();
 
-        return Redirect::route('plats.index');
+        return Redirect::route('plats.index')->with('success', 'Le plat a bien été modifié');
     }
 
     /**
@@ -140,6 +140,6 @@ class PlatController extends Controller
     public function destroy(Plat $plat)
     {
         $plat->delete();
-        return Redirect::route('plats.index');
+        return Redirect::route('plats.index')->with('success', 'Le plat a bien été supprimer');
     }
 }

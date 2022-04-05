@@ -50,13 +50,13 @@ class PreferenceController extends Controller
     public function storePreference(Request $request, Plat $plat)
     {
         auth()->user()->plats()->toggle([$plat->id]);
-        return redirect()->back()->with('success', 'Le plat à bien été ajouté a vos préférences');
+        return redirect()->back()->with('success', 'Le plat a bien été ajouté a vos préférences');
     }
 
     public function removePreference(Request $request, Plat $plat)
     {
         auth()->user()->plats()->toggle([$plat->id]);
-        return redirect()->back()->with('success', 'Le plat à bien été enlevé de vos préférences');
+        return redirect()->back()->with('success', 'Le plat a bien été enlevé de vos préférences');
     }
 
     /**
@@ -102,6 +102,6 @@ class PreferenceController extends Controller
     public function destroy($id)
     {
         auth()->user()->plats()->toggle([$id]);
-        return redirect()->back()->with('success', 'Le plat à bien été enlever de vos préférences');
+        return redirect()->back()->with('success', 'Le plat a bien été enlever de vos préférences');
     }
 }
