@@ -83,7 +83,7 @@
                     <p class="text-muted">{{ Str::replace(',', ' - ', $plat->description) }} </p>
                     <div class="d-flex justify-content-center small text-warning mb-2">
                         @for ($i = 1; $i <= $plat->avis->pluck('note')->avg(); $i++)
-                            <a href="{{ route('avis.show',$plat->id) }}"><i class="fa fa-star text-warning"></i></a>
+                            <a href="{{ route('avis.show2',$plat->id) }}"><i class="fa fa-star text-warning"></i></a>
                             @endfor
                     </div>
                     <p class="lead m-0">{{ $plat->prix }} €</p>

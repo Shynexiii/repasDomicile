@@ -27,9 +27,8 @@
                                 @endfor
                         </div>
                     </div>
-                    @if (auth()->user() == $avis->user)
+                    @if (auth()->user()->id == $avis->user->id)
                     <div class="d-flex justify-content-between mt-2 align-items-center">
-                        {{-- <small class="text-danger">Supprimer</small> --}}
                         <a href="{{ route('avis.destroy',$avis) }}"
                             class="text-danger text-decoration-none">Supprimer</a>
                     </div>
@@ -39,11 +38,8 @@
 
                 @endif
 
-
                 @auth
-                @foreach (auth()->user()->commandes as $item)
-                @foreach ($item->plats as $item)
-                @if ($item->id == $plat->id)
+                @if ($canCommented)
                 <div class="mt-5">
                     <h3>Laisser un avis</h3>
                     <form action="{{ route('avis.store', $plat) }}" method="POST">
@@ -68,8 +64,6 @@
                     </form>
                 </div>
                 @endif
-                @endforeach
-                @endforeach
                 @endauth
             </div>
         </div>

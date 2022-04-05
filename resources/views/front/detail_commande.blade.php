@@ -42,7 +42,8 @@
                                 <td class="align-middle">{{ $plat->prix * $plat->getOriginal()['pivot_quantite'] }}
                                 </td>
                                 @if ($commandes->status == "Livrée")
-                                <td class="align-middle"><a href="{{ route('avis.show', $plat->id) }}"><i
+                                <td class="align-middle"><a
+                                        href="{{ route('avis.show', [$commandes->id, $plat->id]) }}"><i
                                             class="bi bi-pencil-square text-secondary"></i></a>
                                 </td>
                                 @endif
