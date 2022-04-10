@@ -25,6 +25,7 @@
 
 Suivre les instructions:
 
+    - Prérequis : Composer, Apache 2.4 and PHP 7.2+, Apache, Node.Js, MySQL or MariaDB
   
 
 1) cloner le dépôt repasDomicile
@@ -41,7 +42,7 @@ Suivre les instructions:
 
 4) Configurer le fichier .env pour connecter la base de données
 
-- DB_DATABASE=[nom de la base de donné]
+- DB_DATABASE=[nom de la base de données]
 
 - DB_USERNAME=[root]
 
