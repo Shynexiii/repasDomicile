@@ -14,7 +14,7 @@
                             <tr>
                                 <th scope="col" class="text-center">Numéro</th>
                                 <th scope="col" class="text-center">Montant</th>
-                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center">Statut</th>
                                 <th scope="col">Détail</th>
                                 <th scope="col">Facture</th>
                             </tr>
