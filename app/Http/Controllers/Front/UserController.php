@@ -23,7 +23,7 @@ class UserController extends Controller
         $user = Auth::user();
         // $u = User::find($user->id)->adresse()->get();
         // dd($u, $user->adresse()->ville);
-        return view('front.profile', compact('user'));
+        return view('front.profil', compact('user'));
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
-        return redirect()->back()->with('success', 'Le profile à bien été mis à jour.');
+        return redirect()->back()->with('success', 'Le profil à bien été mis à jour.');
     }
 
     public function updatePassword(Request $request, User $user)
