@@ -58,7 +58,7 @@
                         {{ auth()->user()->last_name }} {{ auth()->user()->first_name }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.profil') }}">Profil</a></li>
                         <li><a class="dropdown-item" href="{{ route('preference.index') }}">Mes preférences</a></li>
                         <li><a class="dropdown-item" href="{{ route('user.commande_history') }}">Mes Commandes</a></li>
                         <li>

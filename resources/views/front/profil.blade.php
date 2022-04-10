@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Mon profile')
+@section('title', 'Mon profil')
 
 @section('content')
 <section class="h-100">
