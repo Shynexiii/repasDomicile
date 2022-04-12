@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 }
 
                 $commande = new Commande;
-                $commande->montant = Cart::subtotal();
+                $commande->montant = doubleval(Cart::subtotal());
                 $commande->status = $faker->randomElement(['En cours', 'Livrée']);
                 $commande->mode_paiement = "Card";
                 $commande->user()->associate($user);
