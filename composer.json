@@ -20,7 +20,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "laraveldaily/laravel-invoices": "^3.0",
+        "marksitko/laravel-unsplash": "^2.0",
         "stripe/stripe-php": "^7.114",
+        "unsplash/unsplash": "^3.2",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {

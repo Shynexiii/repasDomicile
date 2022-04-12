@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use MarkSitko\LaravelUnsplash\Facades\Unsplash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PlatFactory extends Factory
@@ -24,11 +25,17 @@ class PlatFactory extends Factory
             'Épinard', 'Champignon', 'Gingembre', 'Chilie', 'Romarin', 'Concombre', 'Cornichon', 'Avocat', 'Citrouille',
             'Menthe', 'Aubergine', 'Poireau'
         );
+
+        $image = Unsplash::randomPhoto()
+            ->term('food')
+            ->orientation('landscape')
+            ->toJson();
+
         return [
             'nom' => $this->faker->randomElement($name),
             'description' => implode(',', $this->faker->randomElements($ingredient, 4)),
             'prix' => $this->faker->randomFloat(2, 0, 100),
-            'image' => 'https://dummyimage.com/450x300',
+            'image' => $image->urls->raw . '&w=450&h300',
             'jour' => random_int(1, 7),
         ];
     }
