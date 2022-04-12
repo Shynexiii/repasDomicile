@@ -28,9 +28,10 @@
                         <td class="align-middle"><span
                                 class="align-middle badge bg-{{ $commande->status == 'En cours' ? 'warning' : 'success' }} fs-6">{{
                                 $commande->status }}</span></td>
-                        <td class="align-middle">{{ $commande->adresse->nom ?? '' }} {{ $commande->adresse->ville ?? ''
+                        <td class="align-middle">{{ $commande->adresse->nom ?? $commande->user->adresse->nom }} {{
+                            $commande->adresse->ville ?? $commande->user->adresse->ville
                             }} {{
-                            $commande->adresse->code_postal ?? '' }}</td>
+                            $commande->adresse->code_postal ?? $commande->user->adresse->code_postal }}</td>
                         <td class="align-middle">{{ $commande->mode_paiement }}</td>
                         <td class="align-middle">
                             <a href="{{ route('commandes.show', $commande->id) }}" class="btn text-secondary btn-lg"><i
