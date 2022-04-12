@@ -35,16 +35,13 @@
                     @endif
                 </div>
                 @endforeach
-
                 @endif
 
-                @auth
                 @if ($canCommented)
                 <div class="mt-5">
                     <h3>Laisser un avis</h3>
                     <form action="{{ route('avis.store', $plat) }}" method="POST">
                         @csrf
-                        @method('POST')
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Votre note</label>
                             <select class="form-select" name="note" aria-label="Default select example">
@@ -64,7 +61,6 @@
                     </form>
                 </div>
                 @endif
-                @endauth
             </div>
         </div>
     </div>

@@ -51,8 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('preferences/{plat}', [App\Http\Controllers\Front\PreferenceController::class, 'destroy'])->name('preference.delete');
 
     Route::get('avis', [App\Http\Controllers\Admin\AvisController::class, 'index'])->name('avis.index');
-    Route::get('avis/plat/{commande}/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'show'])->name('avis.show');
-    Route::get('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'show2'])->name('avis.show2');
+    Route::get('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'show'])->name('avis.show');
     Route::post('avis/plat/{plat}', [App\Http\Controllers\Admin\AvisController::class, 'store'])->name('avis.store');
     Route::get('avis/delete/{avis}', [App\Http\Controllers\Admin\AvisController::class, 'destroy'])->name('avis.destroy');
 

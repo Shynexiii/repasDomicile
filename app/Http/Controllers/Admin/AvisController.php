@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Avis;
 use App\Models\Plat;
 use App\Models\User;
-use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AvisController extends Controller
 {
-    private bool $canCommented = false;
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +45,7 @@ class AvisController extends Controller
      */
     public function store(Request $request, Plat $plat)
     {
-        $request->validate([
+        $this->validate($request, [
             'note' => 'min:1|max:4|required',
             'commentaire' => 'string|required'
         ]);
@@ -66,12 +64,13 @@ class AvisController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($commande, $plat, Request $request)
+    public function show($plat, Request $request)
     {
-        $commande = Commande::find($commande);
-        if (auth()->user()->commandes->find($commande)->plats->find($plat)) {
-            $this->canCommented = true;
-            $canCommented = $this->canCommented;
+        $canCommented = false;
+        foreach (auth()->user()->commandes->where('status', 'Livrée') as $commande) {
+            if ($commande->plats->where('id', $plat)->toArray()) {
+                $canCommented = true;
+            }
         }
         $plat = Plat::find($plat);
         $avis = Avis::all();
@@ -111,14 +110,5 @@ class AvisController extends Controller
     {
         $avis->delete();
         return back()->with('success', 'Votre avis a bien été supprimer');
-    }
-
-
-    public function show2($plat, Request $request)
-    {
-        $canCommented = $this->canCommented;
-        $plat = Plat::find($plat);
-        $avis = Avis::all();
-        return view('front.Avis.avis', compact('plat', 'avis', 'canCommented'));
     }
 }

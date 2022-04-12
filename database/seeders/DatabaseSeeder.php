@@ -84,5 +84,13 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
+
+        $commandes = Commande::where('status', 'Livrée')->get();
+        foreach ($commandes as $commande) {
+            $avis = Avis::factory()->make();
+            $avis->user()->associate($commande->user);
+            $avis->plat()->associate($commande->plats->random());
+            $avis->save();
+        }
     }
 }

@@ -15,7 +15,7 @@ class AvisFactory extends Factory
     {
         return [
             'note' => intval($this->faker->numberBetween(1, 4)),
-            'commentaire' => $this->faker->text(150),
+            'commentaire' => $this->faker->sentence(6, true),
         ];
     }
 }
